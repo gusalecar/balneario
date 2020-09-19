@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from backend.api import UserAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('acceso/', include('frontend.urls')),
     path('api/', include('backend.urls')),
+    path('api/1.0/create_user/',UserAPI.as_view(), name = 'api_create_user')
 ]
