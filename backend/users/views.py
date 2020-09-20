@@ -1,17 +1,12 @@
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
 from rest_framework.response import Response
+from backend.users import serializers
 
 class RegisterRequest(APIView):
     def post(self, request):
-        data = request.data
-        User.objects.create_user(
-            data['username'],
-            data['email'],
-            data['password']
-        )
-        if authenticate(username = data['username'], password = data['password']) is not None:
+        serializer = serializers.UserSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
             return Response({ "success": True })
         else:
-            return Response({ "success": False })
+            return Response(serializer.errors)
