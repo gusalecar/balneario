@@ -1,5 +1,14 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
+from .models import Carpa
+
+class CarpaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Carpa
+        fields = (
+            'id',
+            'ocupado',
+        )
 
 class UserSerializer(serializers.Serializer):
     id = serializers.ReadOnlyField()

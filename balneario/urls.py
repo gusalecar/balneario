@@ -17,12 +17,16 @@ from django.contrib import admin
 from django.urls import include, path
 from backend.api import UserAPI
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from backend.views import CarpaList
+from backend.views import Login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('acceso/', include('frontend.urls')),
-    path('api/', include('backend.urls')),
+    path('api/', include(('backend.urls','api'))),
     path('api/create_user/',UserAPI.as_view(), name = 'api_create_user'),
     path('token', TokenObtainPairView.as_view()),
-    path('token/refresh', TokenRefreshView.as_view())
+    path('token/refresh', TokenRefreshView.as_view()),
+    path('carpa/', CarpaList.as_view(), name ='carpa_list'),
+    path('login/', Login.as_view(), name = 'login')
 ]

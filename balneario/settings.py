@@ -128,5 +128,8 @@ STATIC_URL = '/static/'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAUL_PERMISSIOM_CLASSES': (
+        'rest_framework.permossions.IsAuthenticated'
+    ),
 }
