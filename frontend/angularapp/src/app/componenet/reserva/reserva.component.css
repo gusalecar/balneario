@@ -1,0 +1,21 @@
+.link-ss {
+    text-decoration: none;
+    text-align: left;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10px;
+}
+
+.titulo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.subtitulo {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.cov19 {
+    width: 100%;
+}

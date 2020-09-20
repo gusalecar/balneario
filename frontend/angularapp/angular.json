@@ -1,4 +1,4 @@
-{
+	{
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
@@ -24,9 +24,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+			  "src/assets/font/css/font-awesome.min.css"
             ],
-            "scripts": []
+            "scripts": [ "src/assets/tether/tether.js"]
           },
           "configurations": {
             "production": {
@@ -119,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angularapp"
+    }
+  },
+  "defaultProject": "angularapp",
+  "cli": {
+    "analytics": "71ba4349-044c-455d-96af-c5b30349e994"
+  }
 }
