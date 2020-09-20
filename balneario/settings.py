@@ -22,6 +22,8 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'taz=p+k28z)jy#6-ns#1rr+09k3i!-*=18!i1ixv!)^%7dxmc)'
 
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -130,6 +132,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAUL_PERMISSIOM_CLASSES': (
-        'rest_framework.permossions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated',
     ),
 }

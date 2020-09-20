@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import include, path
 from backend.api import UserAPI
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from backend.views import CarpaList
-from backend.views import Login
+from backend.views import CarpaList,Loginview
+from backend import views
+
 
 urlpatterns = [
+    path('', include('backend.urls')),
     path('admin/', admin.site.urls),
     path('acceso/', include('frontend.urls')),
     path('api/', include(('backend.urls','api'))),
@@ -28,5 +30,6 @@ urlpatterns = [
     path('token', TokenObtainPairView.as_view()),
     path('token/refresh', TokenRefreshView.as_view()),
     path('carpa/', CarpaList.as_view(), name ='carpa_list'),
-    path('login/', Login.as_view(), name = 'login')
+    path('login2/', Loginview.as_view()),
+
 ]

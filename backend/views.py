@@ -12,6 +12,11 @@ from django.views.generic.edit import FormView
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import AuthenticationForm
+from django.conf import settings
+from django.contrib import auth
+import jwt
+from .serializers import UserSerializer
+from rest_framework import status
 
 
 
@@ -21,27 +26,45 @@ class CarpaList(generics.ListCreateAPIView):
     queryset =Carpa.objects.all()
     serializer_class = CarpaSerializer
 
+class Loginview(APIView):
+    def post(self,request):
+        data = request.data
+        username= data.get('username','')
+        password= data.get('password','')
+        user = auth.authenticate(username=username,password=password)
 
-class Login(FormView):
-    template_name = 'login.html'
-    form_class = AuthenticationForm
-    success_url = reverse_lazy('api:carpa_list')
+        if user:
+            auth_token = jwt.encode({'username': user.username},settings.SECRET_KEY)
 
-    @method_decorator(csrf_protect)
-    @method_decorator(never_cache)
-    def dispatch(self,request,*args,**kwargs):
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(self.get_success_url())
-        else:
-            return super(Login,self).dispatch(request,*args,**kwargs)
+            serializer = UserSerializer(user)
 
-    def form_valid(self,form):
-        user = authenticate(username = form.cleaned_data['username'],password = form.cleaned_data['password'])
-        #aca tendria que ir el token
-        token = True #esto hay que cambiarlo
-        if token:
-            login(self.request,form.get_user())
-            return super(Login,self).form_valid(form)
+            data={'user':serializer.data,'token':auth_token}
+            return Response(data,status=status.HTTP_200_OK)
+        return Response({'detail':'Invalid credentials'},status=status.HTTP_401_UNAUTHORIZED)
+
+#class Login(FormView):
+#    template_name = 'login.html'
+#    form_class = AuthenticationForm
+#    success_url = reverse_lazy('api:carpa_list')
+#
+#    @method_decorator(csrf_protect)
+#    @method_decorator(never_cache)
+#    def dispatch(self,request,*args,**kwargs):
+#        if request.user.is_authenticated:
+#            return HttpResponseRedirect(self.get_success_url())
+#        else:
+#            return super(Login,self).dispatch(request,*args,**kwargs)
+
+#    def form_valid(self,form):
+#        user = authenticate(username = form.cleaned_data['username'],password = form.cleaned_data['password'])
+#        #aca tendria que ir el token
+#        token = True #esto hay que cambiarlo
+#        if token:
+#            login(self.request,form.get_user())
+#            return super(Login,self).form_valid(form)
+
+
+
 
 
 
