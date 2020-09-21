@@ -30,6 +30,6 @@ urlpatterns = [
     path('token', TokenObtainPairView.as_view()),
     path('token/refresh', TokenRefreshView.as_view()),
     path('carpa/', CarpaList.as_view(), name ='carpa_list'),
-    path('login2/', Loginview.as_view()),
+    path('api/login/', Loginview.as_view()),
 
 ]
