@@ -96,6 +96,7 @@
                         ],
                         "scripts": []
                     }
+
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -124,9 +125,11 @@
                 }
             }
         }
+
     },
     "defaultProject": "angularapp",
     "cli": {
         "analytics": "efe94e23-6a25-4685-b5c4-4f1154c23770"
     }
+
 }
