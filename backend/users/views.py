@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from backend.users import serializers
+from . import serializers
 
 class RegisterRequest(APIView):
     def post(self, request):
