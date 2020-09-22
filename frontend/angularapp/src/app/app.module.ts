@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { ReservaComponent } from './componenet/reserva/reserva.component';
 
 import { NavbarComponent } from './componenet/navbar/navbar.component';
+import { FooterComponent } from './componenet/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ReservaComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
