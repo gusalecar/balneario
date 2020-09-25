@@ -8,6 +8,16 @@ import { ReservaComponent } from './componenet/reserva/reserva.component';
 
 import { NavbarComponent } from './componenet/navbar/navbar.component';
 import { FooterComponent } from './componenet/footer/footer.component';
+import { RecuperarpwsComponent } from './componenet/recuperarpws/recuperarpws.component';
+
+import { APP_ROUTING} from './app.routes';
+import { RespuestaCreacionCuentaComponent } from './componenet/respuesta-creacion-cuenta/respuesta-creacion-cuenta.component';
+import { ReservaCroquisComponent } from './componenet/reserva-croquis/reserva-croquis.component';
+import { ReservapagoComponent } from './componenet/reservapago/reservapago.component'
+
+import { FormsModule } from '@angular/forms'
+
+import { HttpClientModule } from '@angular/common/http'
 
 
 @NgModule({
@@ -15,11 +25,18 @@ import { FooterComponent } from './componenet/footer/footer.component';
     AppComponent,
     ReservaComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    RecuperarpwsComponent,
+    RespuestaCreacionCuentaComponent,
+    ReservaCroquisComponent,
+    ReservapagoComponent
   ],
   imports: [
+    HttpClientModule,
+    FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    APP_ROUTING
   ],
   providers: [],
   bootstrap: [AppComponent]
