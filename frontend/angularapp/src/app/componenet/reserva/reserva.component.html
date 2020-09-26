@@ -21,14 +21,14 @@
         </div>
     </div>
     <div class="link-ss mt-5">
-        <form class="form-inline" [routerLink]="['croquis']">
-            <input class="form-control mb-2 mr-sm-2 mb-sm-0 anchoFecha" type="text" onfocus="this.type='date'" name="trip-start" placeholder="Desde" min="2020-12-01" max="2021-02-28">
+        <form class="form-inline" (ngSubmit)="irCrouis()">
+            <input class="form-control c  mb-2 mr-sm-2 mb-sm-0 anchoFecha" type="text" onfocus="this.type='date'" name="trip-start" placeholder="Desde" min="2020-12-01" max="2021-02-28">
 
             <input class="form-control mb-2 mr-sm-2 mb-sm-0 anchoFecha" type="text" onfocus="this.type='date'" name="trip-start" placeholder="Hasta" min="2020-12-01" max="2021-02-28">
 
             <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0 anchoCantidad" placeholder="Cantidad" min="1" max="50">
 
-            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button type="submit" class="btn btn-primary anchoBoton float-right">Buscar</button>
 
 
         </form>

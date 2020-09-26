@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router} from '@angular/router'
 @Component({
   selector: 'app-reserva',
   templateUrl: './reserva.component.html',
@@ -7,19 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservaComponent implements OnInit {
 mostrarCov19:boolean=true;
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
-
-mostrarOcultarCov19(){
-  
-  if(this.mostrarCov19=true){
-this.mostrarCov19=false;
+  irCrouis(){
+    this.router.navigateByUrl('/croquis');
   }
-  if(this.mostrarCov19=false){
-    this.mostrarCov19=true;
-    
-      }
-}
 }

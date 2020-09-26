@@ -157,4 +157,5 @@
 .atencion {
     background-color: red;
     color: white;
+    opacity: 0.6;
 }

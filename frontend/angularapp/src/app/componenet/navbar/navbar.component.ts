@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { switchAll } from 'rxjs/operators';
 import { UsuarioModel} from '../../models/usuario.model'
@@ -17,11 +17,24 @@ export class NavbarComponent implements OnInit {
 usuario: UsuarioModel;
 passwordConfirm: string;
 usuariologin:UsuarioModel;
-  constructor( private auth:AuthService) { }
+noLogueado:boolean;
+user:string;
+  constructor( private auth:AuthService) {
+    if(localStorage.getItem('token')){
+      this.noLogueado=false;
+    }
+    else{
+      this.noLogueado=true;
+    }
+    if(localStorage.getItem('usuario')){
+      this.user=localStorage.getItem('usuario');
+    }
+   }
 
   ngOnInit(): void {
     this.usuario= new UsuarioModel;
     this.usuariologin= new UsuarioModel;
+
   }
 
   onSubmit(formulario: NgForm){
@@ -39,7 +52,7 @@ usuariologin:UsuarioModel;
   error => {
     console.log(error);
   if(error.error.email=='This field must be unique.'){ Swal.close(); Swal.fire({icon: 'error',text:'E-MAIL ya registrado'})}
-  if(error.error.username=='A user with that username already exists.'){  Swal.fire({icon: 'error', text:'Usuario Existente'})} 
+  if(error.error.username=='A user with that username already exists.'){  Swal.fire({icon: 'error', text:'Usuario Existente'})}
  }
  )
   }
@@ -54,10 +67,16 @@ usuariologin:UsuarioModel;
     Swal.showLoading();
     this.auth.autenticarUsuario(this.usuariologin).subscribe(respuesta=>{
       Swal.close();
+      this.noLogueado=false;
       Swal.fire({icon:'success',title:'Bienvenido!!'})
-      
+
     },
     error=>{Swal.fire({icon: 'error',text:'Error de autenticacion, usuario inexistente o contraseña erronea'})}
     ) ;
   }
+  logout(){
+    this.auth.logout();
+    this.noLogueado=true;
+  }
+
 }

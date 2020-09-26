@@ -2,9 +2,12 @@
     <div class="atencion">
         <p class="m-0"><strong>Atencion:</strong> La capacidad de las carpas es de 4 personas como maximo, para su visita recomendamos 1 carpa</p>
     </div>
-    <form action="#" name="calculadora" id="calculadora">
+    <form (ngSubmit)="comprar()">
         <div class="formulario">
-            <span class="mr-3">Carpas: </span><span> 0</span><span> Sombrillas:</span><span>0</span><button class="boton-reservar align-bottom float-right">Reservar</button>
+            <span class="mr-3">Carpas: </span><span> 0</span>
+            <span> Sombrillas:</span><span>0</span>
+            <span> Total:</span><span>$0</span>
+            <button class="boton-reservar align-bottom float-right" disabled>Reservar</button>
         </div>
     </form>
 
