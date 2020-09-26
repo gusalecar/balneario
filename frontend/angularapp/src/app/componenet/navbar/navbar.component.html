@@ -8,7 +8,7 @@
 	</button>
     <!-- Collection of nav links, forms, and other content for toggling -->
     <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-        <div class="navbar-nav ml-auto action-buttons">
+        <div *ngIf="noLogueado" class="navbar-nav ml-auto action-buttons">
             <div class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle mr-4">Iniciar Sesión</a>
                 <div class="dropdown-menu action-form">
@@ -64,6 +64,18 @@
                         </div>
                         <input type="submit" class="btn btn-primary btn-block" value="Crear">
                     </form>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!noLogueado" class="navbar-nav ml-auto action-buttons">
+            <div class="nav-item dropdown">
+                <a href="#" data-toggle="dropdown" class=" btn-logout "><i class="fa fa-user-circle-o fa-2x"></i> </a>
+                <div class="dropdown-menu action-form text-center">
+                  <button  class="btn">  Cambiar Contraseñaa</button> <!--funcionalidad a desarrollar si lo amerita-->
+                    <hr>
+                    <button  class="btn">  Mis Reservas</button>
+                    <hr>
+                    <button (click)="logout()" class="btn">  Cerrar Sesion</button>
                 </div>
             </div>
         </div>

@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class AuthService {
 private url = 'http://localhost:8000/';
 userToken: string;
+usuario:string;
   constructor(private http: HttpClient) { }
 
 nuevoUsuario(usuario:UsuarioModel){
@@ -18,7 +19,7 @@ nuevoUsuario(usuario:UsuarioModel){
    password: usuario.password
  }
  return this.http.post(`${this.url}api/auth/register`, authData);
-} 
+}
 autenticarUsuario(usuario:UsuarioModel){
   const authData2 = {
     username: usuario.usuario,
@@ -26,14 +27,26 @@ autenticarUsuario(usuario:UsuarioModel){
   }
   return this.http.post(`${this.url}api/auth/token`, authData2).pipe(map(resp=>{
     this.guardarToken(resp['access']);
+    this.guardarUsuario(usuario.usuario);
     return resp;
   } ));
 }
 logout(){
+  localStorage.removeItem('token');
+  localStorage.removeItem('expira');
+  localStorage.removeItem('usuario');
+}
+private guardarUsuario(usuario:string){
+this.usuario=usuario;
+localStorage.setItem('usuario', usuario);
 }
 private guardarToken(idToken:string){
   this.userToken=idToken;
   localStorage.setItem('token',idToken);
+
+  let hoy=new Date();
+  hoy.setSeconds(3600);
+  localStorage.setItem('expira',hoy.getTime().toString())
 }
 leerToken(){
   if(localStorage.getItem('token')){
@@ -42,6 +55,21 @@ leerToken(){
   else{
     this.userToken='';
   }
+}
+
+estaAutenticado():boolean{
+if(this.userToken=null){
+  return false;
+}
+const expira = Number(localStorage.getItem('expira'));
+const expiradate = new Date();
+expiradate.setTime(expira);
+if(expiradate>  new Date()){
+
+  return true}
+else{return false
+  this.logout();}
+
 }
 
 }
