@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
@@ -22,12 +23,17 @@ export class ReservaCroquisComponent implements OnInit {
 comprar(){
 if(this.auth.estaAutenticado()){
   console.log('envia formulario');
-  this.router.navigateByUrl('pago');
+  Swal.fire({
+    title: 'Error',
+    text:'No se pudo concretar la reserva, "error especifico"',
+    icon:'error'
+  })
+  //this.router.navigateByUrl('pago');
 }
 else{
   Swal.fire({title:'No puede seguir',
-            text:'Necesita estar registrado para seguir con el proceso de reserva',
-            icon:'question'
+            text:'Necesita estar registrado para realizar la reserva',
+            icon:'info'
           })
 }
 }
