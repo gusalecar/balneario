@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { switchAll } from 'rxjs/operators';
 import { UsuarioModel} from '../../models/usuario.model'
+
+import { AuthService} from '../../services/auth.service'
+import Swal from 'sweetalert2'
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +17,7 @@ export class NavbarComponent implements OnInit {
 usuario: UsuarioModel;
 passwordConfirm: string;
 usuariologin:UsuarioModel;
-  constructor() { }
+  constructor( private auth:AuthService) { }
 
   ngOnInit(): void {
     this.usuario= new UsuarioModel;
@@ -18,15 +25,39 @@ usuariologin:UsuarioModel;
   }
 
   onSubmit(formulario: NgForm){
-    console.log('formulario enviado');
-    console.log(this.usuario);
-    console.log(formulario); 
+ if(formulario.invalid){return}
+ Swal.fire({
+   icon:'info',
+   allowOutsideClick:false,
+   text: 'Espere por favor...'
+ });
+ Swal.showLoading();
+ this.auth.nuevoUsuario(this.usuario).subscribe(respusta=>{
+   console.log(respusta);
+   Swal.close();
+  Swal.fire({icon:'success',title:'El usuario se creo correctamente'})},
+  error => {
+    console.log(error);
+  if(error.error.email=='This field must be unique.'){ Swal.close(); Swal.fire({icon: 'error',text:'E-MAIL ya registrado'})}
+  if(error.error.username=='A user with that username already exists.'){  Swal.fire({icon: 'error', text:'Usuario Existente'})} 
+ }
+ )
   }
 
   onSubmitLogin(formulario: NgForm){
-    
-    console.log('formulario enviado');
-    console.log(this.usuariologin);
-    console.log(formulario); 
+    if(formulario.invalid){return}
+    Swal.fire({
+      icon:'info',
+      allowOutsideClick:false,
+      text: 'Espere por favor...'
+    });
+    Swal.showLoading();
+    this.auth.autenticarUsuario(this.usuariologin).subscribe(respuesta=>{
+      Swal.close();
+      Swal.fire({icon:'success',title:'Bienvenido!!'})
+      
+    },
+    error=>{Swal.fire({icon: 'error',text:'Error de autenticacion, usuario inexistente o contraseña erronea'})}
+    ) ;
   }
 }
