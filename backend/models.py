@@ -1,48 +1,45 @@
+from django.core.exceptions import ValidationError
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
-from django.utils import timezone
 
 class Reservable(models.Model):
-    id = models.AutoField(primary_key=True)
-    numero = models.IntegerField()
+    numero = models.IntegerField(unique=True)
 
     def __str__(self):
-        return str(self.id)
+        return f'{type(self).__name__} {self.numero}'
+
+    class Meta:
+        abstract = True
 
 class Carpa(Reservable):
     pass
-    def __str__(self):
-        return str(self.id)
-
 
 class Sombrilla(Reservable):
     pass
 
-    def __str__(self):
-        return str(self.id)
-
-
 class Estacionamiento(Reservable):
     pass
 
-    def __str__(self):
-        return str(self.id)
-
-
 class Reserva(models.Model):
-    id = models.AutoField(primary_key=True)
-    fecha = models.DateTimeField(default=timezone.now)
-    ususario_reservo = models.ForeignKey('auth.User',on_delete=models.CASCADE,null=True,blank=True)
-
-    def __str__(self):
-        return str(self.id)
+    fecha = models.DateTimeField(auto_now_add=True)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
 
 class ReservaDetalle(models.Model):
-    id = models.AutoField(primary_key=True)
-    fecha_ini = models.DateTimeField(default=timezone.now)
-    fecha_fin = models.DateTimeField()
-    item_reservado = models.ForeignKey(Reservable,on_delete=models.CASCADE,null=True,blank=True)
-    item_reserva = models.ForeignKey(Reserva,on_delete=models.CASCADE,null=True,blank=True)
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField()
+    carpa = models.ForeignKey(Carpa,on_delete=models.CASCADE,null=True,blank=True)
+    sombrilla = models.ForeignKey(Sombrilla,on_delete=models.CASCADE,null=True,blank=True)
+    estacionamiento = models.ForeignKey(Estacionamiento,on_delete=models.CASCADE,null=True,blank=True)
+    reserva = models.ForeignKey(Reserva,on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str(self.id)
+    def clean(self):
+        reservables = [
+            self.carpa,
+            self.sombrilla,
+            self.estacionamiento,
+        ]
+        if len(list(filter(None, reservables))) != 1:
+            raise ValidationError('Solo un reservable por reserva')
+
+        if self.fecha_inicio > self.fecha_fin:
+            raise ValidationError('La fecha de inicio no puede ser menor a la fecha final')

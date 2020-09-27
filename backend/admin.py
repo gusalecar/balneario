@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Reservable,Carpa,Sombrilla,Estacionamiento,Reserva,ReservaDetalle
-
-admin.site.register(Reservable)
+from .models import Carpa,Sombrilla,Estacionamiento,Reserva,ReservaDetalle
 
 admin.site.register(Carpa)
 
