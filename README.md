@@ -9,10 +9,11 @@ Balneario es una app web para administrar reservas en un balneario.
 
 ## Instalación
 
-Use ```pip``` para instalar las dependencias necesarias para el backend.
+Use ```pipenv``` para instalar las dependencias necesarias para el backend.
 
 ```
-pip install -r requirements.txt
+pip install --user pipenv
+pipenv install --dev
 ```
 
 Use ```npm``` para instalar las dependencias necesarias para el frontend.
@@ -25,13 +26,10 @@ npm i
 Ejecutar las migraciones desde la raiz del proyecto.
 
 ```
-python manage.py makemigrations
-python manage.py migrate
+pipenv run migrate
 ```
 
-Debe ejecutarse cada vez que algun modelo es cambiado.
-
 ## Uso
-1. Compilar el frontend ejecutando ```ng build``` desde la carpeta frontend/angularapp.
-2. Desde la raiz del proyecto ejecutar ```python manage.py runserver```.
-3. Acceder desde http://localhost:8000/acceso.
+1. Iniciar el frontend ejecutando ```ng serve``` desde la carpeta frontend/angularapp.
+2. Desde la raiz del proyecto ejecutar ```pipenv run runserver```.
+3. Acceder desde http://localhost:4200/.
