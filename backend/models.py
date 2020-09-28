@@ -23,13 +23,18 @@ class Estacionamiento(Reservable):
 class Reserva(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
+    carpa = models.ManyToManyField(Carpa, through='ReservaDetalle')
+    sombrilla = models.ManyToManyField(Sombrilla, through='ReservaDetalle')
+    estacionamiento = models.ManyToManyField(Estacionamiento, through='ReservaDetalle')
 
 class ReservaDetalle(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     carpa = models.ForeignKey(Carpa,on_delete=models.CASCADE,null=True,blank=True)
     sombrilla = models.ForeignKey(Sombrilla,on_delete=models.CASCADE,null=True,blank=True)
-    estacionamiento = models.ForeignKey(Estacionamiento,on_delete=models.CASCADE,null=True,blank=True)
+    estacionamiento = models.ForeignKey(
+        Estacionamiento,on_delete=models.CASCADE,null=True,blank=True
+    )
     reserva = models.ForeignKey(Reserva,on_delete=models.CASCADE)
 
     def clean(self):
