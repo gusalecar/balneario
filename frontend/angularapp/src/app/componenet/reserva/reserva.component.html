@@ -2,6 +2,7 @@
     <div class="btn " data-toggle="collapse" href="#collapseCov19" role="button" aria-expanded="false" aria-controls="collapseCov19" class="link-ss">
         <i class="fa fa-info-circle icon-margin"></i> <span class="titulo">Ayuda relacionada con el coronavirus (COVID-19)</span>
     </div>
+
     <div class="link-ss collapse pb-3   " id="collapseCov19">
         <div class="card card-body subtitulo">
             <span>
@@ -20,23 +21,24 @@
         </div>
     </div>
     <div class="link-ss mt-5">
-        <form class="form-inline">
-            <input class="form-control mb-2 mr-sm-2 mb-sm-0 anchoFecha" type="text" onfocus="this.type='date'" name="trip-start" placeholder="Desde" min="2020-12-01" max="2021-02-28">
+        <form class="form-inline" (ngSubmit)="irCrouis()">
+            <input class="form-control c  mb-2 mr-sm-2 mb-sm-0 anchoFecha" type="text" onfocus="this.type='date'" name="trip-start" placeholder="Desde" min="2020-12-01" max="2021-02-28">
 
             <input class="form-control mb-2 mr-sm-2 mb-sm-0 anchoFecha" type="text" onfocus="this.type='date'" name="trip-start" placeholder="Hasta" min="2020-12-01" max="2021-02-28">
 
             <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0 anchoCantidad" placeholder="Cantidad" min="1" max="50">
 
-            <button type="submit" class="btn btn-primary">Buscar</button>
+            <button type="submit" class="btn btn-primary anchoBoton float-right">Buscar</button>
 
 
         </form>
     </div>
 </div>
+
 <div class="link-ss">
     <div class="card-deck mt-5">
         <div class="card  bg-dark text-white card-busqueda">
-            <img src="../../../assets/img/vistraFontalBalneario2.png" height="auto" class="card-img img-cochera">
+            <img src="assets/img/vistraFontalBalneario2.png" height="auto" class="card-img img-cochera">
             <div class="card-img-overlay">
                 <h5 class="card-title">Card title</h5>
                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

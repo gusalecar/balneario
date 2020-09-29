@@ -1,0 +1,7 @@
+.input-archivo::after {
+    content: "Seleccione su Archivo";
+}
+
+.contenedor {
+    margin: 10%;
+}

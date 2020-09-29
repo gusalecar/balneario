@@ -1,0 +1,161 @@
+.sombrilla {
+    border-radius: 100%;
+    padding: 0px;
+    height: 1.5%;
+    margin-left: 4%;
+    margin-right: 4%;
+    width: 3%;
+    background-color: rgba(251, 255, 0, 0.9);
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.sombrilla:hover {
+    background-color: rgba(251, 255, 0, 0.4);
+}
+
+.carpa {
+    border-radius: 20%;
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+    background-color: rgba(32, 187, 18, 0.815);
+    padding: 0px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid rgba(1, 1, 1, 0.5);
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.cabezeraizquierda {
+    float: left;
+    width: 50%;
+    display: inline;
+    text-align: right;
+    padding-right: 10%;
+}
+
+.cabezeraderecha {
+    padding-left: 10%;
+    float: right;
+    width: 50%;
+    text-align: left;
+    display: inline;
+}
+
+.hilera1 {
+    float: left;
+    width: 33%;
+    text-align: center;
+    display: inline;
+}
+
+.hilera2 {
+    float: left;
+    width: 33%;
+    text-align: center;
+    display: inline;
+}
+
+.hilera3 {
+    float: right;
+    width: 33%;
+    text-align: center;
+    display: inline;
+}
+
+.contenedorcroquis {
+    background-image: url('../../../assets/img/arena.jpg');
+    background-size: cover;
+}
+
+.titulo {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    width: 80%;
+    text-align: center;
+}
+
+.link-ss {
+    text-decoration: none;
+    text-align: center;
+    margin-left: 0%;
+    margin-right: 0%;
+    margin-bottom: 0px;
+    margin-top: 0%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.contenedoropciones {
+    width: 100%;
+}
+
+.boton-opciones {
+    width: 100%;
+    background-color: rgba(1, 1, 1, 0.1);
+    border: 1px solid;
+    font-size: 30px;
+    text-align: left;
+}
+
+.boton-opciones:hover {
+    background-color: rgba(1, 1, 1, 0.4);
+}
+
+.formulario {
+    background-color: rgba(0, 0, 0, 0.733);
+    font-size: 40px;
+    padding: 10px;
+    margin-bottom: 5px;
+    color: aliceblue;
+    text-align: left;
+}
+
+.boton-reservar {
+    color: rgb(255, 255, 255);
+    background-color: rgba(28, 184, 171, 0.979);
+    border: 1px solid;
+    font-size: 30px;
+    padding: 5px;
+    width: 20%;
+    margin: 0%;
+    border-radius: 6px;
+    text-align: right;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid rgba(1, 1, 1, 0.5);
+    line-height: 1.5;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.atencion {
+    background-color: red;
+    color: white;
+    opacity: 0.6;
+}

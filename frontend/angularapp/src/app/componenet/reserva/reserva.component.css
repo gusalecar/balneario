@@ -1,8 +1,8 @@
 .link-ss {
     text-decoration: none;
     text-align: left;
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 7%;
+    margin-right: 7%;
     margin-bottom: 0px;
 }
 
@@ -53,11 +53,15 @@
 }
 
 .anchoFecha {
-    width: 35%;
+    width: 30%;
 }
 
 .anchoCantidad {
-    width: 20%;
+    width: 10%;
+}
+
+.anchoBoton {
+    width: 25%;
 }
 
 .fondo-busqueda {
@@ -73,4 +77,15 @@
     position: absolute;
     width: 100%;
     height: 100%;
+}
+
+.prueba {
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../assets/img/Familia-Feliz-Playa-fondo.jpg');
+    background-size: 100%;
+}
+
+.text-portada {
+    font-size: 100 px;
 }

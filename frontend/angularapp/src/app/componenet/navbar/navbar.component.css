@@ -219,3 +219,9 @@ body {
         width: 100%;
     }
 }
+
+.btn-logout {
+    border-radius: 100%;
+    border: solid transparent;
+    padding: 0px;
+}
