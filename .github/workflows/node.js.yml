@@ -5,10 +5,10 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ '**' ]
     paths: 'frontend/angularapp/**'
   pull_request:
-    branches: [ develop ]
+    branches: [ '**' ]
     paths: 'frontend/angularapp/**'
 
 jobs:

@@ -2,10 +2,10 @@ name: Django CI
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ '**' ]
     paths-ignore: 'frontend/angularapp/**'
   pull_request:
-    branches: [ develop ]
+    branches: [ '**' ]
     paths-ignore: 'frontend/angularapp/**'
 
 jobs:
@@ -19,12 +19,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - uses: dschep/install-pipenv-action@v1
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
-      uses: dschep/install-pipenv-action@v1
       run: |
         pipenv install
     - name: Run Tests
