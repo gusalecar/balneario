@@ -6,7 +6,7 @@ router = routers.DefaultRouter()
 router.register(r'carpas', views.CarpaViewSet)
 router.register(r'sombrillas', views.SombrillaViewSet)
 router.register(r'estacionamientos', views.EstacionamientoViewSet)
-router.register(r'reservas', views.ReservaViewSet)
+router.register(r'reservas', views.ReservaViewSet, 'reservas')
 
 urlpatterns = [
     path('', views.TestRequest.as_view()),
