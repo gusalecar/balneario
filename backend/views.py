@@ -44,6 +44,5 @@ class ReservaViewSet(viewsets.ModelViewSet):
             if detalles.is_valid():
                 detalles.save()
                 return Response({ 'success': True })
-            else:
-                return Response(detalles.errors, status.HTTP_400_BAD_REQUEST)
+            return Response(detalles.errors, status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
