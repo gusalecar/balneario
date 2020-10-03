@@ -20,13 +20,28 @@ class EstacionamientoSerializer(serializers.ModelSerializer):
         fields = [ 'numero' ]
 
 class ReservaDetalleSerializer(serializers.ModelSerializer):
-    carpa = CarpaSerializer(allow_null=True)
-    sombrilla = SombrillaSerializer(allow_null=True)
-    estacionamiento = EstacionamientoSerializer(allow_null=True)
+    carpa = serializers.IntegerField(required=False, source='carpa.numero')
+    sombrilla = serializers.IntegerField(required=False, source='sombrilla.numero')
+    estacionamiento = serializers.IntegerField(required=False, source='estacionamiento.numero')
 
     class Meta:
         model = ReservaDetalle
         fields = [ 'id', 'fecha_inicio', 'fecha_fin', 'carpa', 'sombrilla', 'estacionamiento' ]
+
+    def validate_carpa(self, value): # pylint: disable=R0201
+        if Carpa.objects.filter(numero=value):
+            return value
+        raise serializers.ValidationError('No existe')
+
+    def validate_sombrilla(self, value): # pylint: disable=R0201
+        if Sombrilla.objects.filter(numero=value):
+            return value
+        raise serializers.ValidationError('No existe')
+
+    def validate_estacionamiento(self, value): # pylint: disable=R0201
+        if Estacionamiento.objects.filter(numero=value):
+            return value
+        raise serializers.ValidationError('No existe')
 
     def validate(self, attrs):
         def reservado(**res):
@@ -39,23 +54,25 @@ class ReservaDetalleSerializer(serializers.ModelSerializer):
         errors = {}
         if attrs['fecha_inicio'] > attrs['fecha_fin']:
             errors['fecha'] = 'La fecha final no puede ser mayor a la inicial'
+
+        attrs['carpa'] = attrs.get('carpa')
+        attrs['sombrilla'] = attrs.get('sombrilla')
+        attrs['estacionamiento'] = attrs.get('estacionamiento')
+
         if attrs['carpa']:
             if reservado(carpa__numero=attrs['carpa']['numero']):
                 errors['carpa'] = 'reservado'
-            if not Carpa.objects.filter(numero=attrs['carpa']['numero']):
-                errors['carpa'] = 'no existe'
+            attrs['carpa'] = Carpa.objects.get(numero=attrs['carpa']['numero'])
         elif attrs['sombrilla']:
             if reservado(sombrilla__numero=attrs['sombrilla']['numero']):
                 errors['sombrilla'] = 'reservado'
-            if not Sombrilla.objects.filter(numero=attrs['sombrilla']['numero']):
-                errors['sombrilla'] = 'no existe'
+            attrs['sombrilla'] = Sombrilla.objects.get(numero=attrs['sombrilla']['numero'])
         elif attrs['estacionamiento']:
             if reservado(estacionamiento__numero=attrs['estacionamiento']['numero']):
                 errors['estacionamiento'] = 'reservado'
-            if not Estacionamiento.objects.filter(numero=attrs['estacionamiento']['numero']):
-                errors['estacionamiento'] = 'no existe'
-        else:
-            errors['reservable'] = 'Debe haber por lo menos uno'
+            attrs['estacionamiento'] = (
+                Estacionamiento.objects.get(numero=attrs['estacionamiento']['numero'])
+            )
         if errors:
             raise serializers.ValidationError(errors)
         return attrs
@@ -71,18 +88,12 @@ class ReservaSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         reserva = Reserva.objects.create(usuario=validated_data['usuario'])
         for detalle in validated_data['detalles']:
-            carpa = detalle['carpa']
-            carpa = Carpa.objects.get(numero=carpa['numero']) if carpa else None
-            sombrilla = detalle['sombrilla']
-            sombrilla = Sombrilla.objects.get(numero=sombrilla['numero']) if sombrilla else None
-            est = detalle['estacionamiento']
-            est = Estacionamiento.objects.get(numero=est['numero']) if est else None
             detalle = ReservaDetalle.objects.create(
                 reserva=reserva,
                 fecha_fin=detalle['fecha_fin'],
                 fecha_inicio=detalle['fecha_inicio'],
-                carpa=carpa,
-                sombrilla=sombrilla,
-                estacionamiento=est,
+                carpa=detalle['carpa'],
+                sombrilla=detalle['sombrilla'],
+                estacionamiento=detalle['estacionamiento'],
             )
         return reserva
