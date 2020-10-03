@@ -33,16 +33,8 @@ class ReservaViewSet(viewsets.ModelViewSet):
         return models.Reserva.objects.filter(usuario=self.request.user)
 
     def create(self, request):
-        serializer = self.serializer_class(data=request.data, context={ 'user': request.user })
-        if serializer.is_valid():
-            reserva = serializer.save()
-            detalles = serializers.ReservaDetalleSerializer(
-                data=request.data['reservadetalle_set'],
-                many=True,
-                context={ 'reserva': reserva }
-            )
-            if detalles.is_valid():
-                detalles.save()
-                return Response({ 'success': True })
-            return Response(detalles.errors, status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+        reserva = self.serializer_class(data=request.data)
+        if reserva.is_valid():
+            reserva.save(usuario=request.user)
+            return Response({ 'success': True })
+        return Response(reserva.errors, status.HTTP_400_BAD_REQUEST)

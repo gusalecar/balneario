@@ -3,13 +3,17 @@ from django.conf import settings
 from django.db import models
 
 class Reservable(models.Model):
-    numero = models.IntegerField(unique=True)
+    numero = models.IntegerField()
 
     def __str__(self):
         return f'{type(self).__name__} {self.numero}'
 
     class Meta:
         abstract = True
+
+    def clean(self):
+        if type(self).objects.filter(numero=self.numero).exists():
+            raise ValidationError(f'Ya existe {type(self).__name__} con este numero')
 
 class Carpa(Reservable):
     pass
@@ -23,9 +27,6 @@ class Estacionamiento(Reservable):
 class Reserva(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
-    carpa = models.ManyToManyField(Carpa, through='ReservaDetalle')
-    sombrilla = models.ManyToManyField(Sombrilla, through='ReservaDetalle')
-    estacionamiento = models.ManyToManyField(Estacionamiento, through='ReservaDetalle')
 
 class ReservaDetalle(models.Model):
     fecha_inicio = models.DateField()
@@ -35,7 +36,7 @@ class ReservaDetalle(models.Model):
     estacionamiento = models.ForeignKey(
         Estacionamiento,on_delete=models.CASCADE,null=True,blank=True
     )
-    reserva = models.ForeignKey(Reserva,on_delete=models.CASCADE)
+    reserva = models.ForeignKey(Reserva, related_name='detalles', on_delete=models.CASCADE)
 
     def clean(self):
         reservables = [
