@@ -1,0 +1,1122 @@
+[
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 1,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 2,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 3,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 4,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 5,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 6,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 7,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 8,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 9,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 10,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 11,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 12,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 13,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 14,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 15,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 16,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 17,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 18,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 19,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 20,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 21,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 22,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 23,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 24,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 25,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 26,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 27,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 28,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 29,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 30,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 31,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 32,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 33,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 34,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 35,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 36,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 37,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 38,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 39,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 40,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 41,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 42,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 43,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 44,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 45,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 46,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 47,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 48,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 49,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 50,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 51,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 52,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 53,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 54,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 55,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 56,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 57,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 58,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 59,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 60,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 61,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 62,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 63,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 64,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 65,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 66,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 67,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 68,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 69,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 70,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 71,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 72,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 73,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 74,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 75,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 76,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 77,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 78,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 79,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 80,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 81,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 82,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 83,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 84,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 85,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 86,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 87,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 88,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 89,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 90,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 91,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 92,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 93,
+            "habilitado": true,
+            "tipo": "carpa"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 1,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 2,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 3,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 4,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 5,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 6,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 7,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 8,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 9,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 10,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 11,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 12,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 13,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 14,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 15,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 16,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 17,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 18,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 19,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 20,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 21,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 22,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 23,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 24,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 25,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 26,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 27,
+            "habilitado": true,
+            "tipo": "sombrilla"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 1,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 2,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 3,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 4,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 5,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 6,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 7,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 8,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 9,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 10,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 11,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 12,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 13,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 14,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 15,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 16,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 17,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 18,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 19,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    },
+    {
+        "model": "backend.item",
+        "fields": {
+            "numero": 20,
+            "habilitado": true,
+            "tipo": "estacionamiento"
+        }
+    }
+]
