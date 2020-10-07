@@ -4,6 +4,7 @@ from . import views
 
 router = routers.DefaultRouter()
 router.register(r'reservas', views.ReservaViewSet, 'reservas')
+router.register(r'items', views.ItemViewSet, 'items')
 
 urlpatterns = [
     path('', views.TestRequest.as_view()),

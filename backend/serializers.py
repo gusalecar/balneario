@@ -6,7 +6,7 @@ class ItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Item
-        fields = [ 'numero', 'tipo' ]
+        fields = [ 'numero', 'habilitado', 'tipo' ]
 
 class ReservaDetalleSerializer(serializers.ModelSerializer):
     item = ItemSerializer()

@@ -1,8 +1,8 @@
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Reserva
-from .serializers import ReservaSerializer
+from .models import Item, Reserva
+from .serializers import ItemSerializer, ReservaSerializer
 
 class TestRequest(APIView):
     def get(self, request):
@@ -23,3 +23,17 @@ class ReservaViewSet(viewsets.ModelViewSet):
             reserva.save(usuario=request.user)
             return Response({ 'success': True })
         return Response(reserva.errors, status.HTTP_400_BAD_REQUEST)
+
+class ItemViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = ItemSerializer
+
+    def get_queryset(self):
+        queryset = Item.objects.all()
+        params = self.request.query_params
+        if params.get('tipo'):
+            queryset = queryset.filter(tipo=params['tipo'])
+        if params.get('numero'):
+            queryset = queryset.filter(numero=params['numero'])
+        if params.get('habilitado').capitalize() in [ 'True', 'False' ]:
+            queryset = queryset.filter(habilitado=params['habilitado'].capitalize())
+        return queryset
