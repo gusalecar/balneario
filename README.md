@@ -12,7 +12,7 @@ Balneario es una app web para administrar reservas en un balneario.
 Use ```pipenv``` para instalar las dependencias necesarias para el backend.
 
 ```
-pip install --user pipenv
+pip install pipenv
 pipenv install --dev
 ```
 
