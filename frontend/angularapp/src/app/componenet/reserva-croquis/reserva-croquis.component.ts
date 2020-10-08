@@ -12,12 +12,18 @@ declare var $:any;
   styleUrls: ['./reserva-croquis.component.css']
 })
 export class ReservaCroquisComponent implements OnInit {
+ctrFlechasSombrillas: boolean;
+ctrFlechasCarpas: boolean;
+
 
   constructor(private auth:AuthService,
-    private router:Router) { }
+    private router:Router) {
+
+     }
 
   ngOnInit(): void {
-
+    this.ctrFlechasCarpas=true;
+    this.ctrFlechasSombrillas=true;
   }
 
 comprar(){
@@ -36,5 +42,13 @@ else{
             icon:'info'
           })
 }
+}
+
+botonSombrillas(){
+  this.ctrFlechasSombrillas=!this.ctrFlechasSombrillas;
+}
+
+botonCarpas(){
+  this.ctrFlechasCarpas=!this.ctrFlechasCarpas;
 }
 }

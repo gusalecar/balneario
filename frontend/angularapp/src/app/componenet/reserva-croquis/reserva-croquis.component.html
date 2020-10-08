@@ -1,3 +1,4 @@
+<!--Area calculadora de precio total-->
 <div class="contenedorcroquis ">
     <div class="atencion">
         <p class="m-0"><strong>Atencion:</strong> La capacidad de las carpas es de 4 personas como maximo, para su visita recomendamos 1 carpa</p>
@@ -14,7 +15,7 @@
     <!--Area carpas-->
     <div class="">
         <div class=" link-ss" data-toggle="collapse" href="#carpa" role="button" aria-expanded="false" aria-controls="carpa">
-            <button class="boton-opciones btn"><span class=" p-0" >  Area de Carpas</span> <i class="float-right fa fa-arrow-down " ></i> </button>
+            <button class="boton-opciones btn" (click)="botonCarpas()"><span class=" p-0" >  Area de Carpas</span> <i *ngIf="ctrFlechasCarpas" class="float-right fa fa-arrow-down " ></i><i class="float-right fa fa-arrow-up" *ngIf="!ctrFlechasCarpas" ></i> </button>
         </div>
         <div id="carpa" class="collapse">
             <div>
@@ -156,7 +157,7 @@
     <!--Area sombrillas-->
     <div>
         <div class="link-ss" data-toggle="collapse" href="#sombrilla" role="button" aria-expanded="false" aria-controls="sombrilla">
-            <button class="btn boton-opciones "><span class="p-0">Area de Sombrillas</span><i class="float-right fa fa-arrow-down"></i></button>
+            <button class="btn boton-opciones" (click)="botonSombrillas()"><span class="p-0">Area de Sombrillas</span><i *ngIf="ctrFlechasSombrillas" class="float-right fa fa-arrow-down"></i> <i id="carpup" class="float-right fa fa-arrow-up" *ngIf="!ctrFlechasSombrillas" ></i></button>
         </div>
         <div id="sombrilla" class="pb-1 collapse">
             <!--primera fila-->

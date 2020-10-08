@@ -34,7 +34,6 @@ user:string;
   ngOnInit(): void {
     this.usuario= new UsuarioModel;
     this.usuariologin= new UsuarioModel;
-
   }
 
   onSubmit(formulario: NgForm){
@@ -71,8 +70,15 @@ user:string;
       Swal.fire({icon:'success',title:'Bienvenido!!'})
 
     },
-    error=>{Swal.fire({icon: 'error',text:'Error de autenticacion, usuario inexistente o contraseña erronea'})}
-    ) ;
+    error=>{console.log(error);
+      if(error.message=='Http failure response for http://localhost:8000/api/auth/token: 0 Unknown Error')
+      {
+        Swal.fire({icon: 'error', text: 'Error de comunicacion con el servidor'})
+      }
+      else{
+      Swal.fire({icon: 'error',text:'Error de autenticacion, usuario inexistente o contraseña erronea'})}
+      }
+      ) ;
   }
   logout(){
     this.auth.logout();
