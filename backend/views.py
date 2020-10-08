@@ -37,4 +37,9 @@ class ItemViewSet(viewsets.ReadOnlyModelViewSet):
         if params.get('habilitado'):
             if params['habilitado'].capitalize() in [ 'True', 'False' ]:
                 queryset = queryset.filter(habilitado=params['habilitado'].capitalize())
+        if (params.get('fechainicio') is not None) & (params.get('fechafin') is not None):
+            queryset = queryset.filter(
+                detalles__fecha_fin__lte=params['fechafin'],
+                detalles__fecha_inicio__gte=params['fechainicio']
+            )
         return queryset
