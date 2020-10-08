@@ -34,6 +34,7 @@ class ItemViewSet(viewsets.ReadOnlyModelViewSet):
             queryset = queryset.filter(tipo=params['tipo'])
         if params.get('numero'):
             queryset = queryset.filter(numero=params['numero'])
-        if params.get('habilitado').capitalize() in [ 'True', 'False' ]:
-            queryset = queryset.filter(habilitado=params['habilitado'].capitalize())
+        if params.get('habilitado'):
+            if params['habilitado'].capitalize() in [ 'True', 'False' ]:
+                queryset = queryset.filter(habilitado=params['habilitado'].capitalize())
         return queryset
