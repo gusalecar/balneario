@@ -122,13 +122,13 @@ reservableReservado(){
   for (let posicion of this.reservable){
     if(posicion.item.tipo=='carpa'){
       if(posicion.estado){
-        document.getElementById(`c${posicion.item.numero}`).disabled=true;
+        (<HTMLInputElement> document.getElementById(`c${posicion.item.numero}`)).disabled=true;
         document.getElementById(`c${posicion.item.numero}`).style.opacity='1';
       }
     }
     if(posicion.item.tipo=='sombrilla'){
       if(posicion.estado){
-        document.getElementById(`c${posicion.item.numero}`).disabld=true;
+        (<HTMLInputElement> document.getElementById(`c${posicion.item.numero}`)).disabled=true;
         document.getElementById(`c${posicion.item.numero}`).style.opacity='1';
       }
     }
@@ -201,10 +201,10 @@ calcularTotal(){
 botonReservar(){
 
   if(this.carpas.length > 0 || this.sombrillas.length > 0){
-  document.getElementById(`botonReservar`).disabled=false;
+    (<HTMLInputElement> document.getElementById(`botonReservar`)).disabled=false;
   }
   else{
-    document.getElementById(`botonReservar`).disabled=true;
+    (<HTMLInputElement> document.getElementById(`botonReservar`)).disabled=false;
   }
 }
 }
