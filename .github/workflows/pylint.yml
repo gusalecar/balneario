@@ -2,11 +2,18 @@ name: Pylint
 
 on:
   push:
-    branches: [ '**' ]
-    paths-ignore: 'frontend/angularapp/**'
+    branches:
+      - 'develop'
+    paths-ignore:
+      - 'frontend/angularapp/**',
+      - '.github/**'
   pull_request:
-    branches: [ '**' ]
-    paths-ignore: 'frontend/angularapp/**'
+    branches:
+      - 'develop'
+      - 'master'
+    paths-ignore:
+      - 'frontend/angularapp/**',
+      - '.github/**'
 
 jobs:
   build:
