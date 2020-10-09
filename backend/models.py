@@ -22,8 +22,15 @@ class Item(models.Model):
             raise ValidationError(f'Ya existe {self.tipo} con este numero')
 
 class Reserva(models.Model):
+    ESTADOS = (
+        ('impago', 'Impago'),
+        ('señado', 'Señado'),
+        ('pagado', 'Pagado'),
+    )
+
     fecha = models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, models.CASCADE)
+    estado = models.CharField(max_length=6, choices=ESTADOS, default='impago')
 
 class ReservaDetalle(models.Model):
     fecha_inicio = models.DateField()
@@ -36,3 +43,12 @@ class ReservaDetalle(models.Model):
             raise ValidationError('Fecha inicial menor al dia de hoy')
         if self.fecha_inicio > self.fecha_fin:
             raise ValidationError('Fecha final menor a inicial')
+
+class MedioPago(models.Model):
+    reserva = models.OneToOneField(Reserva, models.CASCADE)
+
+    class Meta:
+        abstract = True
+
+class Transferencia(MedioPago):
+    comprobante = models.FileField(upload_to='transferencias/')

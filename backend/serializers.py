@@ -1,6 +1,6 @@
 from datetime import date
 from rest_framework import serializers
-from .models import Item, Reserva, ReservaDetalle
+from .models import Item, Reserva, ReservaDetalle, Transferencia
 
 class ItemSerializer(serializers.ModelSerializer):
 
@@ -40,10 +40,11 @@ class ReservaDetalleSerializer(serializers.ModelSerializer):
 class ReservaSerializer(serializers.ModelSerializer):
     fecha = serializers.DateTimeField(read_only=True)
     detalles = ReservaDetalleSerializer(many=True)
+    estado = serializers.CharField(read_only=True)
 
     class Meta:
         model = Reserva
-        fields = [ 'id', 'detalles', 'fecha' ]
+        fields = [ 'id', 'detalles', 'fecha', 'estado' ]
 
     def validate(self, attrs):
         datos = {}
@@ -77,3 +78,9 @@ class ReservaSerializer(serializers.ModelSerializer):
                 item=Item.objects.get(**detalle['item']),
             )
         return reserva
+
+class TransferenciaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Transferencia
+        fields = '__all__'
