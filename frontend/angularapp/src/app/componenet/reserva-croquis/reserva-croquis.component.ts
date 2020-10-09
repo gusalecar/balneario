@@ -204,7 +204,7 @@ botonReservar(){
     (<HTMLInputElement> document.getElementById(`botonReservar`)).disabled=false;
   }
   else{
-    (<HTMLInputElement> document.getElementById(`botonReservar`)).disabled=false;
+    (<HTMLInputElement> document.getElementById(`botonReservar`)).disabled=true;
   }
 }
 }
