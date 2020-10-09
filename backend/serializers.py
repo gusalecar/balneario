@@ -84,3 +84,8 @@ class TransferenciaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transferencia
         fields = '__all__'
+
+    def validate_reserva(self, value):
+        if (value.usuario == self.context['request'].user) & (value.estado == 'impago'):
+            return value
+        raise serializers.ValidationError('Reserva no valida')
