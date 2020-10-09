@@ -5,7 +5,7 @@
     margin-left: 4%;
     margin-right: 4%;
     width: 3%;
-    background-color: rgba(251, 255, 0, 0.9);
+    background-color: gray;
     display: inline-block;
     font-weight: 400;
     text-align: center;
@@ -21,7 +21,7 @@
 }
 
 .sombrilla:hover {
-    background-color: rgba(251, 255, 0, 0.4);
+  opacity: 0.7;
 }
 
 .carpa {
@@ -29,7 +29,7 @@
     width: 30px;
     height: 30px;
     font-size: 10px;
-    background-color: rgba(32, 187, 18, 0.815);
+    background-color: gray;
     padding: 0px;
     display: inline-block;
     font-weight: 400;
@@ -43,6 +43,9 @@
     font-size: 1rem;
     line-height: 1.5;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+.carpa:hover{
+  opacity: 0.5;
 }
 
 .cabezeraizquierda {

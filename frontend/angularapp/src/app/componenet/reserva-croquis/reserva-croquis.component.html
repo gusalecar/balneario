@@ -1,38 +1,39 @@
+<!--Area calculadora de precio total-->
 <div class="contenedorcroquis ">
     <div class="atencion">
         <p class="m-0"><strong>Atencion:</strong> La capacidad de las carpas es de 4 personas como maximo, para su visita recomendamos 1 carpa</p>
     </div>
     <form (ngSubmit)="comprar()">
         <div class="formulario">
-            <span class="mr-3">Carpas: </span><span> 0</span>
-            <span> Sombrillas:</span><span>0</span>
-            <span> Total:</span><span>$0</span>
-            <button class="boton-reservar align-bottom float-right" disabled>Reservar</button>
+            <span class="mr-3">Carpas: </span><span> {{carpa}}</span>
+            <span> Sombrillas:</span><span> {{sombrilla}}</span>
+            <span> Total:</span><span>${{total}}</span>
+            <button class="boton-reservar align-bottom float-right" id="botonReservar" >Reservar</button>
         </div>
     </form>
 
     <!--Area carpas-->
     <div class="">
         <div class=" link-ss" data-toggle="collapse" href="#carpa" role="button" aria-expanded="false" aria-controls="carpa">
-            <button class="boton-opciones btn"><span class=" p-0" >  Area de Carpas</span> <i class="float-right fa fa-arrow-down " ></i> </button>
+            <button class="boton-opciones btn" (click)="botonCarpas()"><span class=" p-0" >  Area de Carpas</span> <i *ngIf="ctrFlechasCarpas" class="float-right fa fa-arrow-down " ></i><i class="float-right fa fa-arrow-up" *ngIf="!ctrFlechasCarpas" ></i> </button>
         </div>
         <div id="carpa" class="collapse">
             <div>
                 <div class="cabezeraizquierda ">
-                    <button class="carpa">1</button> <button class="carpa">2</button> <button class="carpa">3</button> <button class="carpa">4</button> <button class="carpa">5</button>
+                    <button id="c1" name="c1" class="carpa" (click)="reservableSeleccionar('c1','carpa',1)">1</button> <button id="c2" (click)="reservableSeleccionar('c2','carpa',2)" class="carpa">2</button> <button id="c3" (click)="reservableSeleccionar('c3','carpa',3)" class="carpa">3</button> <button id="c4" (click)="reservableSeleccionar('c4','carpa',4)" class="carpa">4</button> <button id="c5" class="carpa" (click)="reservableSeleccionar('c5','carpa',5)">5</button>
                 </div>
                 <div class="cabezeraderecha">
-                    <button class="carpa">6</button> <button class="carpa">7</button> <button class="carpa">8</button> <button class="carpa">9</button> <button class="carpa">10</button>
+                    <button id="c6" (click)="reservableSeleccionar('c6','carpa',6)" class="carpa">6</button> <button id="c7" (click)="reservableSeleccionar('c7','carpa',7)" class="carpa">7</button> <button id="c8" (click)="reservableSeleccionar('c8','carpa',8)" class="carpa">8</button> <button id="c9" (click)="reservableSeleccionar('c9','carpa',9)"class="carpa">9</button> <button id="c10" (click)="reservableSeleccionar('c10','carpa',10)" class="carpa">10</button>
                 </div>
             </div>
             <div>
                 <!--Hilera 1-->
                 <div class="hilera1">
                     <div>
-                        <button class="carpa">11</button> <button class="carpa">38</button>
+                        <button class="carpa" id="c11" (click)="reservableSeleccionar('c11','carpa',11)" >11</button> <button id="c38" (click)="reservableSeleccionar('c38','carpa',38)" class="carpa">38</button>
                     </div>
                     <div>
-                        <button class="carpa">12</button> <button class="carpa">37</button>
+                        <button class="carpa" id="c12" (click)="reservableSeleccionar('c12','carpa',12)">12</button> <button class="carpa" id="c37" (click)="reservableSeleccionar('c37','carpa',37)">37</button>
                     </div>
                     <div>
                         <button class="carpa">13</button> <button class="carpa">36</button>
@@ -156,12 +157,12 @@
     <!--Area sombrillas-->
     <div>
         <div class="link-ss" data-toggle="collapse" href="#sombrilla" role="button" aria-expanded="false" aria-controls="sombrilla">
-            <button class="btn boton-opciones "><span class="p-0">Area de Sombrillas</span><i class="float-right fa fa-arrow-down"></i></button>
+            <button class="btn boton-opciones" (click)="botonSombrillas()"><span class="p-0">Area de Sombrillas</span><i *ngIf="ctrFlechasSombrillas" class="float-right fa fa-arrow-down"></i> <i id="carpup" class="float-right fa fa-arrow-up" *ngIf="!ctrFlechasSombrillas" ></i></button>
         </div>
         <div id="sombrilla" class="pb-1 collapse">
             <!--primera fila-->
             <div class="mt-2 text-center">
-                <button class="btn sombrilla">1</button> <button class="sombrilla"> 2</button>
+                <button class="btn sombrilla" id="s1" (click)="reservableSeleccionar('s1','carpa',1)">1</button> <button class="sombrilla" id="s2" (click)="reservableSeleccionar('s2','carpa',2)"> 2</button>
                 <button class="sombrilla">3</button> <button class="sombrilla">4</button>
                 <button class="sombrilla">5</button><button class="sombrilla">6</button>
                 <button class="sombrilla">7</button>
