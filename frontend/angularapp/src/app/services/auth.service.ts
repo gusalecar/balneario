@@ -34,6 +34,19 @@ autenticarUsuario(usuario:UsuarioModel){
     return resp;
   } ));
 }
+//VER
+subirArchivo(File){
+  var json = JSON.stringify(File);
+  console.log(json);
+  console.log(File);
+  this.userToken=localStorage.getItem('token');
+  const headers = new HttpHeaders({'Authorization':`Bearer ${ this.userToken }`});
+  const authData2 = {
+    'reserva':1,
+    'comprobante': json
+  }
+ return this.http.post(`${this.url}api/transferencias`,authData2,{headers})
+}
 verMisReservas(){
   this.userToken=localStorage.getItem('token');
   const headers = new HttpHeaders({'Authorization':`Bearer ${ this.userToken }`});
