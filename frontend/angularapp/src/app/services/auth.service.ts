@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient } from '@angular/common/http'
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { UsuarioModel } from '../models/usuario.model';
 import { map } from 'rxjs/operators';
+import {ItemModel } from '../models/Item.model'
+import { Observable } from 'rxjs';
+import { DetallesModel } from '../models/detalles.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +34,25 @@ autenticarUsuario(usuario:UsuarioModel){
     return resp;
   } ));
 }
+disponibilidadReeservable(fechaInicio:string,fechaFin:string):Observable<ItemModel[]>{
+return this.http.get<ItemModel[]>(`${this.url}api/items/?fechainicio=${fechaInicio}&fechafin=${fechaFin}`);
+}
+reservar(reservables:DetallesModel[]){
+  this.userToken=localStorage.getItem('token');
+  const headers = new HttpHeaders({'Authorization':`Bearer ${ this.userToken }`});
+  const reservaData = {'detalles':reservables };
+  console.log(reservaData);
+  return this.http.post(`${this.url}api/reservas/`,reservaData,{headers}) ;
+}
+
+getQuery(query:string) {
+  const url =`${this.url}${ query }`;
+  const headers = new HttpHeaders({
+    'Authorization':`Bearer ${ this.userToken }`
+  });
+  return this.http.get(url, {headers});
+};
+
 logout(){
   localStorage.removeItem('token');
   localStorage.removeItem('expira');
@@ -58,18 +80,18 @@ leerToken(){
 }
 
 estaAutenticado():boolean{
-if(this.userToken=null){
+if(!localStorage.getItem('token')){
   return false;
 }
 const expira = Number(localStorage.getItem('expira'));
 const expiradate = new Date();
+const actual = new Date();
 expiradate.setTime(expira);
-if(expiradate>  new Date()){
-
+actual.setTime(Date.now());
+if(expiradate > actual) {
   return true}
-else{return false
-  this.logout();}
-
+else{
+  this.logout();
+  return false;}
 }
-
 }
