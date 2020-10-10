@@ -76,7 +76,7 @@ if(this.auth.estaAutenticado()){
   this.cargarReserva();
   console.log(this.reservable);
   this.auth.reservar(this.reservable).subscribe(res=>{console.log(res);});
-  this.router.navigateByUrl('pago');
+  this.router.navigate(['posreserva',this.total]);
 }
 else{
   Swal.fire({title:'No puede seguir',

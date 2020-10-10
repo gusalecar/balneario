@@ -34,6 +34,12 @@ autenticarUsuario(usuario:UsuarioModel){
     return resp;
   } ));
 }
+verMisReservas(){
+  this.userToken=localStorage.getItem('token');
+  const headers = new HttpHeaders({'Authorization':`Bearer ${ this.userToken }`});
+  return this.http.get(`${this.url}api/reservas/`,{headers})
+}
+
 disponibilidadReeservable(fechaInicio:string,fechaFin:string):Observable<ItemModel[]>{
 return this.http.get<ItemModel[]>(`${this.url}api/items/?fechainicio=${fechaInicio}&fechafin=${fechaFin}`);
 }
