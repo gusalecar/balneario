@@ -1,6 +1,10 @@
 .contenedor {
     margin: 10%;
 }
-.input-archivo::after {
-  content: "Seleccione su Archivo";
+.titulo{
+  font-size: 70px;
+  font-style: italic;
+}
+.cuerpo{
+  font-size: 20px;
 }

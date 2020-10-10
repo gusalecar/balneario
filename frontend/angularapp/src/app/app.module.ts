@@ -17,7 +17,8 @@ import { ReservapagoComponent } from './componenet/reservapago/reservapago.compo
 
 import { FormsModule } from '@angular/forms'
 
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { ListareservasComponent } from './componenet/listareservas/listareservas.component'
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http'
     RecuperarpwsComponent,
     RespuestaCreacionCuentaComponent,
     ReservaCroquisComponent,
-    ReservapagoComponent
+    ReservapagoComponent,
+    ListareservasComponent
   ],
   imports: [
     HttpClientModule,
