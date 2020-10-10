@@ -1,1 +1,16 @@
-test
+<!DOCTYPE html>
+<head>
+</head>
+
+<body>
+  <h1>Su reserva en Balneario Pepe</h1>
+  <p>ID de reserva: {{ reserva.id }}</p>
+  <p>Detalle:</p>
+  <ul>
+  {% for det in reserva.detalles %}
+    <li>{{ det.item.tipo }} {{ det.item.numero }}: del {{ det.fecha_inicio }} al {{ det.fecha_fin }}</li>
+  {% endfor %}
+  </ul>
+  <p>Gracias por su reserva.</p>
+  <p>¡Recuerde seguirnos en <a href="https://www.facebook.com/Pepe-Miramar-265480844152222/">Facebook</a> y recomendar!</p>
+</body>

@@ -23,13 +23,19 @@ class ReservaViewSet(viewsets.ModelViewSet):
         reserva = self.serializer_class(data=request.data)
         if reserva.is_valid():
             reserva.save(usuario=request.user)
+            context = { 'reserva': request.data }
+            context['reserva']['id'] = reserva.data['id']
             send_mail(
                 'Comprobante de reserva',
-                'Comprobante de reserva',
+                '',
                 'from@example.com',
                 [request.user.email],
                 fail_silently=False,
-                html_message=render_to_string('mailreserva.html')
+                html_message=render_to_string(
+                    'mailreserva.html',
+                    context=context,
+                    request=request,
+                )
             )
             return Response(reserva.data)
         return Response(reserva.errors, status.HTTP_400_BAD_REQUEST)
