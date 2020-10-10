@@ -47,23 +47,39 @@ class ReservaSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         datos = {}
+
+        numeros = {}
+
         for detalle in attrs['detalles']:
             if not datos.get(detalle['item']['tipo']):
                 datos[detalle['item']['tipo']] = [(
-                    detalle['fecha_inicio'], detalle['fecha_fin']
+                    detalle['fecha_inicio'],
+                    detalle['fecha_fin'],
+                    detalle['item']['numero'],
                 )]
+                numeros[detalle['item']['tipo']] = [ detalle['item']['numero'] ]
             else:
                 datos[detalle['item']['tipo']] += [(
-                    detalle['fecha_inicio'], detalle['fecha_fin']
+                    detalle['fecha_inicio'],
+                    detalle['fecha_fin'],
+                    detalle['item']['numero'],
                 )]
+                numeros[detalle['item']['tipo']] += [ detalle['item']['numero'] ]
 
         for item, fechas in datos.items():
-            for ini_nuevo, fin_nuevo in fechas:
-                superpos = [ (x, y) for x, y in fechas if (x >= ini_nuevo) & (y <= fin_nuevo) ]
-                if len(superpos) > 1:
-                    raise serializers.ValidationError({
-                        'detalles': { item: 'Reservaciones superpuestas' }
-                    })
+            for ini_nuevo, fin_nuevo, numero in fechas:
+                if numeros[item].count(numero) > 1:
+                    superpos = [
+                        (x, y, z) for x, y, z in fechas if (
+                            (x >= ini_nuevo) &
+                            (y <= fin_nuevo) &
+                            (z == numero)
+                        )
+                    ]
+                    if len(superpos) > 1:
+                        raise serializers.ValidationError({
+                            'detalles': { item: f'Numero { numero } superpuesta' }
+                        })
 
         return attrs
 
