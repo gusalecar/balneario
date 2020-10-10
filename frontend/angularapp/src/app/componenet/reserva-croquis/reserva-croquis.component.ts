@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { data } from 'jquery';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
 import { DetallesModel } from '../../models/detalles.model';
 import { ItemModel } from '../../models/Item.model'
 
-declare var jQuery:any;
-declare var $:any;
+
+
 
 @Component({
   selector: 'app-reserva-croquis',
@@ -25,78 +26,57 @@ carpas:number[]=[];
 sombrilla:number=0;
 sombrillas:number[]=[];
 total:number=0;
-reservable:DetallesModel []=[{
- estado:true,
-  item: {
-    numero: 1,
-    tipo: "carpa"
-  }
-},
-{
-estado:false,
-  item: {
-    numero: 2,
-    tipo: "carpa"
-  }
-},
-{
-estado:true,
-  item: {
-    numero: 3,
-    tipo: "carpa"
-  }
-},
-{
-estado: false,
-  item: {
-    numero: 4,
-    tipo: "carpa"
-  }
-},
-{
-estado:true,
-  item: {
-    numero: 5,
-    tipo: "carpa"
-  }
-},{
-estado:true,
-  item: {
-    numero: 6,
-    tipo: "carpa"
-  }
-},
-{
-estado: true,
-  item: {
-    numero: 7,
-    tipo: "carpa"
-  }
-}];
-
+fechaInicio:string='2020-12-01';
+fechaFin:string='2021-02-28';
+items:ItemModel[]=[]
+reservable:DetallesModel []=[
+];
   constructor(private auth:AuthService,
     private router:Router) {
-
-console.log(this.reservable.length);
      }
-
   ngOnInit(): void {
     this.ctrFlechasCarpas=true;
     this.ctrFlechasSombrillas=true;
-    //this.reservableReservado();
+    this.cargarReservable();
     this.botonReservar();
 
   }
-
+cargarReservable(){
+  this.auth.disponibilidadReeservable(this.fechaInicio,this.fechaFin)
+  .subscribe((res:ItemModel[] )=> {console.log(res);
+    this.reservableReservado(res);});
+}
+cargarReserva(){
+  var detalle:DetallesModel;
+  for(let value of this.carpas){
+    detalle={
+      fecha_inicio:'2020-12-01',
+      fecha_fin:'2020-12-01',
+      item:{
+        numero:value,
+        tipo:'carpa'
+      }
+    }
+    this.reservable.push(detalle);
+  }
+  for(let value of this.sombrillas){
+    detalle={
+      fecha_inicio:'2020-12-01',
+      fecha_fin:'2020-12-01',
+      item:{
+        numero:value,
+        tipo:'sombrilla'
+      }
+    }
+    this.reservable.push(detalle);
+  }
+}
 comprar(){
 if(this.auth.estaAutenticado()){
-  console.log('envia formulario');
-  Swal.fire({
-    title: 'Error',
-    text:'No se pudo concretar la reserva, "error especifico"',
-    icon:'error'
-  })
-  //this.router.navigateByUrl('pago');
+  this.cargarReserva();
+  console.log(this.reservable);
+  this.auth.reservar(this.reservable).subscribe(res=>{console.log(res);});
+  this.router.navigateByUrl('pago');
 }
 else{
   Swal.fire({title:'No puede seguir',
@@ -118,19 +98,15 @@ seleccionarCarpa(id:string){
 
 }
 
-reservableReservado(){
-  for (let posicion of this.reservable){
-    if(posicion.item.tipo=='carpa'){
-      if(posicion.estado){
-        (<HTMLInputElement> document.getElementById(`c${posicion.item.numero}`)).disabled=true;
-        document.getElementById(`c${posicion.item.numero}`).style.opacity='1';
-      }
+reservableReservado(reservable:ItemModel[]){
+  for (let posicion of reservable){
+    if(posicion.tipo=='carpa'){
+        (<HTMLInputElement> document.getElementById(`c${posicion.numero}`)).disabled=true;
+        document.getElementById(`c${posicion.numero}`).style.opacity='1';
     }
-    if(posicion.item.tipo=='sombrilla'){
-      if(posicion.estado){
-        (<HTMLInputElement> document.getElementById(`c${posicion.item.numero}`)).disabled=true;
-        document.getElementById(`c${posicion.item.numero}`).style.opacity='1';
-      }
+    if(posicion.tipo=='sombrilla'){
+        (<HTMLInputElement> document.getElementById(`s${posicion.numero}`)).disabled=true;
+        document.getElementById(`c${posicion.numero}`).style.opacity='1';
     }
   }
 }

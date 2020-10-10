@@ -3,8 +3,8 @@ from django.template.loader import render_to_string
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Item, Reserva
-from .serializers import ItemSerializer, ReservaSerializer
+from .models import Item, Reserva, Transferencia
+from .serializers import ItemSerializer, ReservaSerializer, TransferenciaSerializer
 
 class TestRequest(APIView):
     def get(self, request):
@@ -31,7 +31,7 @@ class ReservaViewSet(viewsets.ModelViewSet):
                 fail_silently=False,
                 html_message=render_to_string('mailreserva.html')
             )
-            return Response({ 'success': True })
+            return Response(reserva.data)
         return Response(reserva.errors, status.HTTP_400_BAD_REQUEST)
 
 class ItemViewSet(viewsets.ReadOnlyModelViewSet):
@@ -53,3 +53,12 @@ class ItemViewSet(viewsets.ReadOnlyModelViewSet):
                 detalles__fecha_inicio__gte=params['fechainicio']
             )
         return queryset
+
+class TransferenciaViewSet(viewsets.ModelViewSet):
+    serializer_class = TransferenciaSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Transferencia.objects.filter(
+            reserva__usuario=self.request.user
+        )

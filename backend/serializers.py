@@ -1,6 +1,6 @@
 from datetime import date
 from rest_framework import serializers
-from .models import Item, Reserva, ReservaDetalle
+from .models import Item, Reserva, ReservaDetalle, Transferencia
 
 class ItemSerializer(serializers.ModelSerializer):
 
@@ -40,30 +40,47 @@ class ReservaDetalleSerializer(serializers.ModelSerializer):
 class ReservaSerializer(serializers.ModelSerializer):
     fecha = serializers.DateTimeField(read_only=True)
     detalles = ReservaDetalleSerializer(many=True)
+    estado = serializers.CharField(read_only=True)
 
     class Meta:
         model = Reserva
-        fields = [ 'id', 'detalles', 'fecha' ]
+        fields = [ 'id', 'detalles', 'fecha', 'estado' ]
 
     def validate(self, attrs):
         datos = {}
+
+        numeros = {}
+
         for detalle in attrs['detalles']:
             if not datos.get(detalle['item']['tipo']):
                 datos[detalle['item']['tipo']] = [(
-                    detalle['fecha_inicio'], detalle['fecha_fin']
+                    detalle['fecha_inicio'],
+                    detalle['fecha_fin'],
+                    detalle['item']['numero'],
                 )]
+                numeros[detalle['item']['tipo']] = [ detalle['item']['numero'] ]
             else:
                 datos[detalle['item']['tipo']] += [(
-                    detalle['fecha_inicio'], detalle['fecha_fin']
+                    detalle['fecha_inicio'],
+                    detalle['fecha_fin'],
+                    detalle['item']['numero'],
                 )]
+                numeros[detalle['item']['tipo']] += [ detalle['item']['numero'] ]
 
         for item, fechas in datos.items():
-            for ini_nuevo, fin_nuevo in fechas:
-                superpos = [ (x, y) for x, y in fechas if (x >= ini_nuevo) & (y <= fin_nuevo) ]
-                if len(superpos) > 1:
-                    raise serializers.ValidationError({
-                        'detalles': { item: 'Reservaciones superpuestas' }
-                    })
+            for ini_nuevo, fin_nuevo, numero in fechas:
+                if numeros[item].count(numero) > 1:
+                    superpos = [
+                        (x, y, z) for x, y, z in fechas if (
+                            (x >= ini_nuevo) &
+                            (y <= fin_nuevo) &
+                            (z == numero)
+                        )
+                    ]
+                    if len(superpos) > 1:
+                        raise serializers.ValidationError({
+                            'detalles': { item: f'Numero { numero } superpuesta' }
+                        })
 
         return attrs
 
@@ -77,3 +94,14 @@ class ReservaSerializer(serializers.ModelSerializer):
                 item=Item.objects.get(**detalle['item']),
             )
         return reserva
+
+class TransferenciaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Transferencia
+        fields = '__all__'
+
+    def validate_reserva(self, value):
+        if (value.usuario == self.context['request'].user) & (value.estado == 'impago'):
+            return value
+        raise serializers.ValidationError('Reserva no valida')
