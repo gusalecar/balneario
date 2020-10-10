@@ -1,7 +1,8 @@
 import { ItemModel } from './Item.model'
 
 export class DetallesModel{
-  estado: boolean;
+  fecha_inicio: string;
+  fecha_fin:string;
   item: ItemModel;
 }
 
