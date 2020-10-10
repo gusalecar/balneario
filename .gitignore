@@ -146,3 +146,6 @@ cython_debug/
 
 # Media files
 /media
+
+# Email files
+/mails-reservas
