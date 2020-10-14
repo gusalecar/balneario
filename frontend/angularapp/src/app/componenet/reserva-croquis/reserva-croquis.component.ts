@@ -6,181 +6,182 @@ import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 
 import { DetallesModel } from '../../models/detalles.model';
-import { ItemModel } from '../../models/Item.model'
-
-
-
+import { ItemModel } from '../../models/Item.model';
 
 @Component({
   selector: 'app-reserva-croquis',
   templateUrl: './reserva-croquis.component.html',
-  styleUrls: ['./reserva-croquis.component.css']
+  styleUrls: ['./reserva-croquis.component.css'],
 })
 export class ReservaCroquisComponent implements OnInit {
-ctrFlechasSombrillas: boolean;
-ctrFlechasCarpas: boolean;
-precioCarpa= 21000;
-precioSombrilla= 14000;
-carpa:number=0;
-carpas:number[]=[];
-sombrilla:number=0;
-sombrillas:number[]=[];
-total:number=0;
-fechaInicio:string='2020-12-01';
-fechaFin:string='2021-02-28';
-items:ItemModel[]=[]
-reservable:DetallesModel []=[
-];
-  constructor(private auth:AuthService,
-    private router:Router) {
-     }
+  ctrFlechasSombrillas: boolean;
+  ctrFlechasCarpas: boolean;
+  precioCarpa = 21000;
+  precioSombrilla = 14000;
+  carpa: number = 0;
+  carpas: number[] = [];
+  sombrilla: number = 0;
+  sombrillas: number[] = [];
+  total: number = 0;
+  fechaInicio: string = '2020-12-01';
+  fechaFin: string = '2021-02-28';
+  items: ItemModel[] = [];
+  reservable: DetallesModel[] = [];
+  constructor(private auth: AuthService, private router: Router) {}
   ngOnInit(): void {
-    this.ctrFlechasCarpas=true;
-    this.ctrFlechasSombrillas=true;
+    this.ctrFlechasCarpas = true;
+    this.ctrFlechasSombrillas = true;
     this.cargarReservable();
     this.botonReservar();
-
   }
-cargarReservable(){
-  this.auth.disponibilidadReeservable(this.fechaInicio,this.fechaFin)
-  .subscribe((res:ItemModel[] )=> {console.log(res);
-    this.reservableReservado(res);});
-}
-cargarReserva(){
-  var detalle:DetallesModel;
-  for(let value of this.carpas){
-    detalle={
-      fecha_inicio:'2020-12-01',
-      fecha_fin:'2020-12-01',
-      item:{
-        numero:value,
-        tipo:'carpa'
+  cargarReservable() {
+    this.auth
+      .disponibilidadReeservable(this.fechaInicio, this.fechaFin)
+      .subscribe((res: ItemModel[]) => {
+        console.log(res);
+        this.reservableReservado(res);
+      });
+  }
+  cargarReserva() {
+    var detalle: DetallesModel;
+    for (let value of this.carpas) {
+      detalle = {
+        fecha_inicio: '2020-12-01',
+        fecha_fin: '2020-12-01',
+        item: {
+          numero: value,
+          tipo: 'carpa',
+        },
+      };
+      this.reservable.push(detalle);
+    }
+    for (let value of this.sombrillas) {
+      detalle = {
+        fecha_inicio: '2020-12-01',
+        fecha_fin: '2020-12-01',
+        item: {
+          numero: value,
+          tipo: 'sombrilla',
+        },
+      };
+      this.reservable.push(detalle);
+    }
+  }
+  comprar() {
+    if (this.auth.estaAutenticado()) {
+      this.cargarReserva();
+      console.log(this.reservable);
+      this.auth.reservar(this.reservable).subscribe((res) => {
+        console.log(res);
+      });
+      this.router.navigate(['posreserva', this.total]);
+    } else {
+      Swal.fire({
+        title: 'No puede seguir',
+        text: 'Necesita estar registrado para realizar la reserva',
+        icon: 'info',
+      });
+    }
+  }
+
+  botonSombrillas() {
+    this.ctrFlechasSombrillas = !this.ctrFlechasSombrillas;
+  }
+
+  botonCarpas() {
+    this.ctrFlechasCarpas = !this.ctrFlechasCarpas;
+  }
+
+  seleccionarCarpa(id: string) {}
+
+  reservableReservado(reservable: ItemModel[]) {
+    for (let posicion of reservable) {
+      if (posicion.tipo == 'carpa') {
+        (<HTMLInputElement>(
+          document.getElementById(`c${posicion.numero}`)
+        )).disabled = true;
+        document.getElementById(`c${posicion.numero}`).style.opacity = '1';
+      }
+      if (posicion.tipo == 'sombrilla') {
+        (<HTMLInputElement>(
+          document.getElementById(`s${posicion.numero}`)
+        )).disabled = true;
+        document.getElementById(`c${posicion.numero}`).style.opacity = '1';
       }
     }
-    this.reservable.push(detalle);
   }
-  for(let value of this.sombrillas){
-    detalle={
-      fecha_inicio:'2020-12-01',
-      fecha_fin:'2020-12-01',
-      item:{
-        numero:value,
-        tipo:'sombrilla'
+  reservableSeleccionar(id: string, tipo: string, numero: number) {
+    if (tipo == 'carpa') {
+      if (this.carpaSeleccionada(numero)) {
+        document.getElementById(id).style.background = 'blue';
+        this.carpas.push(numero);
+        this.carpa = this.carpas.length;
+        this.calcularTotal();
+        console.log(this.carpas);
+      } else {
+        document.getElementById(id).style.background = 'gray';
+        this.carpas = this.eliminarNumero(numero, this.carpas);
+        console.log(this.carpas);
+        this.calcularTotal();
+        this.carpa = this.carpas.length;
       }
     }
-    this.reservable.push(detalle);
-  }
-}
-comprar(){
-if(this.auth.estaAutenticado()){
-  this.cargarReserva();
-  console.log(this.reservable);
-  this.auth.reservar(this.reservable).subscribe(res=>{console.log(res);});
-  this.router.navigate(['posreserva',this.total]);
-}
-else{
-  Swal.fire({title:'No puede seguir',
-            text:'Necesita estar registrado para realizar la reserva',
-            icon:'info'
-          })
-}
-}
-
-botonSombrillas(){
-  this.ctrFlechasSombrillas=!this.ctrFlechasSombrillas;
-}
-
-botonCarpas(){
-  this.ctrFlechasCarpas=!this.ctrFlechasCarpas;
-}
-
-seleccionarCarpa(id:string){
-
-}
-
-reservableReservado(reservable:ItemModel[]){
-  for (let posicion of reservable){
-    if(posicion.tipo=='carpa'){
-        (<HTMLInputElement> document.getElementById(`c${posicion.numero}`)).disabled=true;
-        document.getElementById(`c${posicion.numero}`).style.opacity='1';
-    }
-    if(posicion.tipo=='sombrilla'){
-        (<HTMLInputElement> document.getElementById(`s${posicion.numero}`)).disabled=true;
-        document.getElementById(`c${posicion.numero}`).style.opacity='1';
+    if (tipo == 'sombrilla') {
+      if (this.sombrillaSeleccionada(numero)) {
+        document.getElementById(id).style.background = 'blue';
+        this.sombrillas.push(numero);
+        this.sombrilla = this.sombrillas.length;
+        this.calcularTotal();
+      } else {
+        document.getElementById(id).style.background = 'gray';
+        this.sombrillas = this.eliminarNumero(numero, this.sombrillas);
+        console.log(this.sombrillas);
+        this.calcularTotal();
+        this.sombrilla = this.sombrillas.length;
+      }
     }
   }
-}
-reservableSeleccionar(id:string, tipo:string, numero:number){
-  if(tipo=='carpa'){
-    if(this.carpaSeleccionada(numero)){
-      document.getElementById(id).style.background='blue';
-      this.carpas.push(numero);
-      this.carpa=this.carpas.length;
-      this.calcularTotal();
-      console.log(this.carpas);
+  eliminarNumero(numero: number, arreglo: number[]): number[] {
+    var localArray: number[] = [];
+    for (let value of arreglo) {
+      if (value != numero) {
+        localArray.push(value);
+      }
     }
-    else{
-      document.getElementById(id).style.background='gray'
-      this.carpas=this.eliminarNumero(numero,this.carpas);
-      console.log(this.carpas);
-      this.calcularTotal();
-      this.carpa=this.carpas.length;
-    }
+    return localArray;
   }
-  if(tipo=='sombrilla'){
-    if(this.sombrillaSeleccionada(numero)){
-      document.getElementById(id).style.background='blue';
-      this.sombrillas.push(numero);
-      this.sombrilla=this.sombrillas.length;
-      this.calcularTotal();
-    }
-    else{
-      document.getElementById(id).style.background='gray'
-      this.sombrillas=this.eliminarNumero(numero,this.sombrillas);
-      console.log(this.sombrillas);
-      this.calcularTotal();
-      this.sombrilla=this.sombrillas.length;
-    }
-  }
-}
-eliminarNumero(numero:number, arreglo:number[]):number[]{
-  var localArray:number[]=[];
-  for (let value of arreglo){
-    if(value!=numero){
-      localArray.push(value);
-    }
-  }
-  return localArray;
-}
-carpaSeleccionada(numero:number):boolean{
-    for(let value of this.carpas){
-      if(value==numero){
+  carpaSeleccionada(numero: number): boolean {
+    for (let value of this.carpas) {
+      if (value == numero) {
         return false;
       }
     }
-  return true;
-}
-sombrillaSeleccionada(numero:number):boolean{
-  for(let value of this.sombrillas){
-    if(value==numero){
-      return false;
+    return true;
+  }
+  sombrillaSeleccionada(numero: number): boolean {
+    for (let value of this.sombrillas) {
+      if (value == numero) {
+        return false;
+      }
+    }
+    return true;
+  }
+  calcularTotal() {
+    this.total =
+      this.precioCarpa * this.carpas.length +
+      this.precioSombrilla * this.sombrillas.length;
+    this.botonReservar();
+  }
+
+  botonReservar() {
+    if (this.carpas.length > 0 || this.sombrillas.length > 0) {
+      (<HTMLInputElement>(
+        document.getElementById(`botonReservar`)
+      )).disabled = false;
+    } else {
+      (<HTMLInputElement>(
+        document.getElementById(`botonReservar`)
+      )).disabled = true;
     }
   }
-return true;
-}
-calcularTotal(){
-  this.total=this.precioCarpa*this.carpas.length+this.precioSombrilla*this.sombrillas.length;
-  this.botonReservar();
-}
-
-
-botonReservar(){
-
-  if(this.carpas.length > 0 || this.sombrillas.length > 0){
-    (<HTMLInputElement> document.getElementById(`botonReservar`)).disabled=false;
-  }
-  else{
-    (<HTMLInputElement> document.getElementById(`botonReservar`)).disabled=true;
-  }
-}
 }

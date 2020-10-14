@@ -1,8 +1,7 @@
-import { ItemModel } from './Item.model'
+import { ItemModel } from './Item.model';
 
-export class DetallesModel{
+export class DetallesModel {
   fecha_inicio: string;
-  fecha_fin:string;
+  fecha_fin: string;
   item: ItemModel;
 }
-

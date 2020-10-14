@@ -8,9 +8,8 @@ describe('RecuperarpwsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecuperarpwsComponent ]
-    })
-    .compileComponents();
+      declarations: [RecuperarpwsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
