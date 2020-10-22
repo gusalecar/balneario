@@ -13,7 +13,8 @@ class ReservaDetalleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ReservaDetalle
-        fields = [ 'id', 'fecha_inicio', 'fecha_fin', 'item' ]
+        fields = [ 'id', 'fecha_inicio', 'fecha_fin', 'item', 'precio_unitario' ]
+        read_only_fields = [ 'precio_unitario' ]
 
     def validate_item(self, value):
         if not Item.objects.filter(**value, habilitado=True):
@@ -92,6 +93,7 @@ class ReservaSerializer(serializers.ModelSerializer):
                 fecha_fin=detalle['fecha_fin'],
                 fecha_inicio=detalle['fecha_inicio'],
                 item=Item.objects.get(**detalle['item']),
+                precio_unitario=Precio.objects.get(item=detalle['item']['tipo']).valor,
             )
         return reserva
 

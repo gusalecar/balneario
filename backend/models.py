@@ -43,6 +43,7 @@ class ReservaDetalle(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     item = models.ForeignKey(Item, models.CASCADE, related_name='detalles')
+    precio_unitario = models.FloatField(default=0)
     reserva = models.ForeignKey(Reserva, models.CASCADE, related_name='detalles')
 
     def clean(self):
