@@ -3,8 +3,10 @@ from django.template.loader import render_to_string
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import Item, Reserva, Transferencia
-from .serializers import ItemSerializer, ReservaSerializer, TransferenciaSerializer
+from .models import Item, Precio, Reserva, Transferencia
+from .serializers import (
+    ItemSerializer, PrecioSerializer, ReservaSerializer, TransferenciaSerializer
+)
 
 class TestRequest(APIView):
     def get(self, request):
@@ -68,3 +70,15 @@ class TransferenciaViewSet(viewsets.ModelViewSet):
         return Transferencia.objects.filter(
             reserva__usuario=self.request.user
         )
+
+class PrecioViewSet(viewsets.ModelViewSet):
+    serializer_class = PrecioSerializer
+    queryset = Precio.objects.all()
+    lookup_field = 'item'
+
+    def get_permissions(self):
+        if self.action in ['list', 'retrieve']:
+            permission_classes = [permissions.IsAuthenticated]
+        else:
+            permission_classes = [permissions.IsAdminUser]
+        return [permission() for permission in permission_classes]

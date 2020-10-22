@@ -1,6 +1,6 @@
 from datetime import date
 from rest_framework import serializers
-from .models import Item, Reserva, ReservaDetalle, Transferencia
+from .models import Item, Precio, Reserva, ReservaDetalle, Transferencia
 
 class ItemSerializer(serializers.ModelSerializer):
 
@@ -105,3 +105,9 @@ class TransferenciaSerializer(serializers.ModelSerializer):
         if (value.usuario == self.context['request'].user) & (value.estado == 'impago'):
             return value
         raise serializers.ValidationError('Reserva no valida')
+
+class PrecioSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Precio
+        fields = '__all__'
