@@ -1,10 +1,10 @@
 .contenedor {
-    margin: 10%;
+  margin: 10%;
 }
-.titulo{
+.titulo {
   font-size: 70px;
   font-style: italic;
 }
-.cuerpo{
+.cuerpo {
   font-size: 20px;
 }

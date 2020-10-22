@@ -8,9 +8,8 @@ describe('ReservaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReservaComponent ]
-    })
-    .compileComponents();
+      declarations: [ReservaComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

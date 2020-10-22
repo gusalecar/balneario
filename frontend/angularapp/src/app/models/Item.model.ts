@@ -1,4 +1,4 @@
-export class ItemModel{
+export class ItemModel {
   numero: Number;
   tipo: string;
 }

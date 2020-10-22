@@ -8,9 +8,8 @@ describe('RespuestaCreacionCuentaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RespuestaCreacionCuentaComponent ]
-    })
-    .compileComponents();
+      declarations: [RespuestaCreacionCuentaComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
