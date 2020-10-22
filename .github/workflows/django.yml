@@ -5,14 +5,14 @@ on:
     branches:
       - 'develop'
     paths-ignore:
-      - 'frontend/angularapp/**',
+      - 'frontend/angularapp/**'
       - '.github/**'
   pull_request:
     branches:
       - 'develop'
       - 'master'
     paths-ignore:
-      - 'frontend/angularapp/**',
+      - 'frontend/angularapp/**'
       - '.github/**'
 
 jobs:
