@@ -1,0 +1,23 @@
+[
+    {
+        "model": "backend.precio",
+        "fields": {
+            "item": "carpa",
+            "valor": 30.0
+        }
+    },
+    {
+        "model": "backend.precio",
+        "fields": {
+            "item": "sombrilla",
+            "valor": 20.0
+        }
+    },
+    {
+        "model": "backend.precio",
+        "fields": {
+            "item": "estacionamiento",
+            "valor": 10.0
+        }
+    }
+]
