@@ -1,0 +1,53 @@
+<mjml>
+  <mj-body background-color="#ccd3e0">
+    <mj-section background-color="#fff" padding-bottom="20px" padding-top="20px">
+      <mj-column width="100%">
+        <mj-image src="http://www.balneariopepe.com.ar/img/logo2.svg" alt="" align="center" border="none" width="100px" padding-left="0px" padding-right="0px" padding-bottom="10px" padding-top="10px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#356cc7" padding-bottom="5px" padding-top="0">
+      <mj-column width="100%">
+        <mj-text align="center" color="#FFF" font-size="13px" font-family="Helvetica" padding-left="25px" padding-right="25px" padding-bottom="28px" padding-top="28px">
+          <span style="font-size:20px; font-weight:bold">Muchas gracias por su reserva.</span>
+          <br />
+          <span style="font-size:15px">Por favor revise los detalles debajo.</span></mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#568feb" padding-bottom="0px">
+      <mj-column width="100%">
+        <mj-text color="#FFF" font-size="13px" font-family="Helvetica" padding-left="25px" padding-right="25px" padding-bottom="0px">
+          <span style="font-size:15px">ID de su reserva {{ reserva.id }}</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#568feb" padding-top="10px" padding-bottom="0px">
+      <mj-column>
+        <mj-text align="center" color="#FFF" font-size="15px" font-family="Ubuntu, Helvetica, Arial, sans-serif" padding-left="25px" padding-right="25px" padding-bottom="0px"><strong>Item</strong></mj-text>
+      </mj-column>
+      <mj-column>
+        <mj-text align="center" color="#FFF" font-size="15px" font-family="Ubuntu, Helvetica, Arial, sans-serif" padding-left="25px" padding-right="25px" padding-bottom="0px"><strong>Fechas</strong></mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-raw>{% for det in reserva.detalles %}</mj-raw>
+    <mj-section background-color="#568feb" padding-top="0px" padding-bottom="0px">
+      <mj-column>
+        <mj-text align="center" color="#FFF" font-size="13px" font-family="Helvetica" padding-left="25px" padding-right="25px">
+          {{ det.item.tipo }} {{ det.item.numero }}
+        </mj-text>
+      </mj-column>
+      <mj-column>
+        <mj-text align="center" color="#FFF" font-size="13px" font-family="Helvetica" padding-left="25px" padding-right="25px">
+          {{ det.fecha_inicio }} al {{ det.fecha_fin }}
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-raw>{% endfor %}</mj-raw>
+    <mj-section background-color="#356cc7" padding-bottom="5px" padding-top="0">
+      <mj-column width="100%">
+        <mj-text align="center" color="#FFF" font-size="15px" font-family="Helvetica" padding-left="25px" padding-right="25px" padding-bottom="20px" padding-top="20px">
+          <span style="font-size:15px">Balnerio Pepe's</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
