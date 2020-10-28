@@ -21,6 +21,13 @@ class Item(models.Model):
         if type(self).objects.filter(numero=self.numero, tipo=self.tipo):
             raise ValidationError(f'Ya existe {self.tipo} con este numero')
 
+class Precio(models.Model):
+    item = models.CharField(max_length=20, choices=Item.RESERVABLES, unique=True)
+    valor = models.FloatField()
+
+    def __str__(self):
+        return f'{self.get_item_display()} ${self.valor}'
+
 class Reserva(models.Model):
     ESTADOS = (
         ('impago', 'Impago'),
@@ -36,6 +43,7 @@ class ReservaDetalle(models.Model):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     item = models.ForeignKey(Item, models.CASCADE, related_name='detalles')
+    precio_unitario = models.FloatField(default=0)
     reserva = models.ForeignKey(Reserva, models.CASCADE, related_name='detalles')
 
     def clean(self):
