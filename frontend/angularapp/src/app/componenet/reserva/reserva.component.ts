@@ -10,7 +10,7 @@ export class ReservaComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
-  irCrouis() {
+  irCroquis() {
     this.router.navigateByUrl('/croquis');
   }
 }
