@@ -112,26 +112,28 @@ export class ReservaCroquisComponent implements OnInit {
         (<HTMLInputElement>(
           document.getElementById(`c${posicion.numero}`)
         )).disabled = true;
-        document.getElementById(`c${posicion.numero}`).style.opacity = '1';
+        document.getElementById(`c${posicion.numero}`).style.background = 'red';
+        document.getElementById(`c${posicion.numero}`).style.color = 'black';
       }
       if (posicion.tipo == 'sombrilla') {
         (<HTMLInputElement>(
           document.getElementById(`s${posicion.numero}`)
         )).disabled = true;
-        document.getElementById(`c${posicion.numero}`).style.opacity = '1';
+        document.getElementById(`s${posicion.numero}`).style.background = 'red';
+        document.getElementById(`s${posicion.numero}`).style.color = 'black';
       }
     }
   }
   reservableSeleccionar(id: string, tipo: string, numero: number) {
     if (tipo == 'carpa') {
       if (this.carpaSeleccionada(numero)) {
-        document.getElementById(id).style.background = 'blue';
+        document.getElementById(id).style.background = 'green';
         this.carpas.push(numero);
         this.carpa = this.carpas.length;
         this.calcularTotal();
         console.log(this.carpas);
       } else {
-        document.getElementById(id).style.background = 'gray';
+        document.getElementById(id).style.background = 'grey';
         this.carpas = this.eliminarNumero(numero, this.carpas);
         console.log(this.carpas);
         this.calcularTotal();
@@ -140,12 +142,12 @@ export class ReservaCroquisComponent implements OnInit {
     }
     if (tipo == 'sombrilla') {
       if (this.sombrillaSeleccionada(numero)) {
-        document.getElementById(id).style.background = 'blue';
+        document.getElementById(id).style.background = 'green';
         this.sombrillas.push(numero);
         this.sombrilla = this.sombrillas.length;
         this.calcularTotal();
       } else {
-        document.getElementById(id).style.background = 'gray';
+        document.getElementById(id).style.background = 'grey';
         this.sombrillas = this.eliminarNumero(numero, this.sombrillas);
         console.log(this.sombrillas);
         this.calcularTotal();
