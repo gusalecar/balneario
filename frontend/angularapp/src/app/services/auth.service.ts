@@ -37,19 +37,18 @@ export class AuthService {
     );
   }
   //VER
-  subirArchivo(File) {
-    var json = JSON.stringify(File);
-    console.log(json);
-    console.log(File);
+  subirArchivo(id, file: File) {
     this.userToken = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.userToken}`,
     });
-    const authData2 = {
-      reserva: 1,
-      comprobante: json,
-    };
-    return this.http.post(`${this.url}api/transferencias`, authData2, {
+
+    var formData = new FormData();
+
+    formData.append("reserva", id);
+    formData.append("comprobante", file);
+
+    return this.http.post(`${this.url}api/transferencias/`, formData, {
       headers,
     });
   }

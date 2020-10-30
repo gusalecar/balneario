@@ -9,37 +9,17 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let reserva of reservas">
-      <th scope="row">{{ reserva.id }}</th>
+    <tr *ngFor="let reserva of reservas" id="{{ reservas.indexOf(reserva) }}">
+      <th scope="row" name="reservaid">{{ reserva.id }}</th>
       <td>{{ reserva.fecha }}</td>
       <td>{{ reserva.detalles.length }}</td>
 
       <td>{{ reserva.estado }}</td>
       <td>
-        <form>
-          <div class="input-group">
-            <div class="custom-file">
-              <input
-                type="file"
-                class="custom-file-input"
-                id="inputGroupFile04"
-                aria-describedby="inputGroupFileAddon04"
-              />
-              <label class="custom-file-label" for="inputGroupFile04"
-                >Seleccione un Archivo</label
-              >
-            </div>
-            <div class="input-group-append">
-              <button
-                class="btn btn-outline-secondary"
-                type="button"
-                id="inputGroupFileAddon04"
-              >
-                Enviar
-              </button>
-            </div>
-          </div>
-        </form>
+        <input type="file" name="comprobante"/>
+        <button class="btn btn-primary" type="button" (click)="subirArchivo($event)">
+          Enviar
+        </button>
       </td>
     </tr>
   </tbody>

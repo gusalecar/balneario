@@ -20,8 +20,13 @@ export class ListareservasComponent implements OnInit {
   fileEvent(fileInput: Event) {
     this.file = (<HTMLInputElement>fileInput.target).files[0];
   }
-  subirArchivo() {
-    this.auth.subirArchivo(this.file).subscribe((res) => {
+  subirArchivo(event) {
+    let fila = event.target.closest("tr");
+
+    let idReserva = fila.querySelector('[name="reservaid"]').innerText;
+    let comprobante = fila.querySelector('[name="comprobante"]').files[0];
+
+    this.auth.subirArchivo(idReserva, comprobante).subscribe((res) => {
       console.log(res);
     });
   }
