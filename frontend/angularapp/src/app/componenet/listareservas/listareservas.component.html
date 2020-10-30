@@ -16,10 +16,16 @@
 
       <td>{{ reserva.estado }}</td>
       <td>
+        <div *ngIf="(reserva.estado=='impago')">
         <input type="file" name="comprobante"/>
         <button class="btn btn-primary" type="button" (click)="subirArchivo($event)">
           Enviar
         </button>
+      </div>
+        <div *ngIf="reserva.estado=='procesando'">
+          <span>Estamos chequeado su pago, el mismo se procesara en las siguientes 72hs </span>
+
+      </div>
       </td>
     </tr>
   </tbody>

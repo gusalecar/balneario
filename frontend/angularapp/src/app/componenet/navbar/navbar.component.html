@@ -189,21 +189,15 @@
       </div>
     </div>
     <div *ngIf="!noLogueado" class="navbar-nav ml-auto action-buttons">
-      <div class="nav-item dropdown">
-        <a href="#" data-toggle="dropdown" class="btn-logout"
-          ><i class="fa fa-user-circle-o fa-2x"></i>
-        </a>
-        <div class="dropdown-menu action-form text-center">
-          <button class="btn">Cambiar Contraseña</button>
+      <button class="btn" [routerLink]="['listareservas']">
+        Mis Reservas
+      </button>
+          <button class="btn">Mi Perfil</button>
           <!--funcionalidad a desarrollar si lo amerita-->
-          <hr />
-          <button class="btn" [routerLink]="['listareservas']">
-            Mis Reservas
-          </button>
-          <hr />
+
           <button (click)="logout()" class="btn">Cerrar Sesion</button>
-        </div>
+          <i class="fa fa-user-circle-o fa-2x"></i>
       </div>
-    </div>
+
   </div>
 </nav>
