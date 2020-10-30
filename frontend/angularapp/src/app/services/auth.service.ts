@@ -49,7 +49,7 @@ export class AuthService {
     formData.append("comprobante", file);
 
     return this.http.post(`${this.url}api/transferencias/`, formData, {
-      headers,
+      headers
     });
   }
   verMisReservas() {

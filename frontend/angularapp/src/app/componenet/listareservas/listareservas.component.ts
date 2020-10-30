@@ -27,7 +27,11 @@ export class ListareservasComponent implements OnInit {
     let comprobante = fila.querySelector('[name="comprobante"]').files[0];
 
     this.auth.subirArchivo(idReserva, comprobante).subscribe((res) => {
-      console.log(res);
-    });
+      this.auth.verMisReservas().subscribe((resp) => {
+        console.log(resp);
+        this.reservas = resp;
+      });
+    }
+    );
   }
 }
