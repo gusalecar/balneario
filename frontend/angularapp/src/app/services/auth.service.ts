@@ -60,7 +60,13 @@ export class AuthService {
     });
     return this.http.get(`${this.url}api/reservas/`, { headers });
   }
-
+  verPrecios(){
+   // this.userToken = localStorage.getItem('token');
+   // const headers = new HttpHeaders({
+   //   Authorization: `Bearer ${this.userToken}`,
+   // });
+    return this.http.get(`${this.url}api/precios/`)
+  }
   disponibilidadReeservable(
     fechaInicio: string,
     fechaFin: string

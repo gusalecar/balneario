@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { data } from 'jquery';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
+import { map , filter } from 'rxjs/operators'
 
 import { DetallesModel } from '../../models/detalles.model';
 import { ItemModel } from '../../models/Item.model';
@@ -16,8 +17,9 @@ import { ItemModel } from '../../models/Item.model';
 export class ReservaCroquisComponent implements OnInit {
   ctrFlechasSombrillas: boolean;
   ctrFlechasCarpas: boolean;
-  precioCarpa = 21000;
-  precioSombrilla = 14000;
+  precioCarpa: number;
+  precioSombrilla: number;
+  precioEstacionamiento: number;
   carpa: number = 0;
   carpas: number[] = [];
   sombrilla: number = 0;
@@ -33,6 +35,16 @@ export class ReservaCroquisComponent implements OnInit {
     this.ctrFlechasSombrillas = true;
     this.cargarReservable();
     this.botonReservar();
+    this.cargarPrecio();
+  }
+  cargarPrecio(){
+    this.auth
+    .verPrecios().subscribe( (res:any[])=> {
+      this.precioCarpa = res[0].valor;
+      this.precioSombrilla = res[1].valor;
+      this.precioEstacionamiento = res[2].valor;
+    console.log(this.precioSombrilla)
+    })
   }
   cargarReservable() {
     this.auth
@@ -167,9 +179,8 @@ export class ReservaCroquisComponent implements OnInit {
     return true;
   }
   calcularTotal() {
-    this.total =
-      this.precioCarpa * this.carpas.length +
-      this.precioSombrilla * this.sombrillas.length;
+    console.log(this.precioSombrilla);
+    this.total = this.precioCarpa * this.carpas.length + this.precioSombrilla*this.sombrillas.length;
     this.botonReservar();
   }
 
