@@ -33,11 +33,12 @@ class Reserva(models.Model):
         ('impago', 'Impago'),
         ('señado', 'Señado'),
         ('pagado', 'Pagado'),
+        ('procesando', 'Procesando')
     )
 
     fecha = models.DateTimeField(auto_now_add=True)
     usuario = models.ForeignKey(settings.AUTH_USER_MODEL, models.CASCADE)
-    estado = models.CharField(max_length=6, choices=ESTADOS, default='impago')
+    estado = models.CharField(max_length=15, choices=ESTADOS, default='impago')
 
 class ReservaDetalle(models.Model):
     fecha_inicio = models.DateField()

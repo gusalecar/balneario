@@ -108,6 +108,13 @@ class TransferenciaSerializer(serializers.ModelSerializer):
             return value
         raise serializers.ValidationError('Reserva no valida')
 
+    def create(self, validated_data):
+        transferencia = Transferencia.objects.create(**validated_data)
+        reserva = Reserva.objects.get(id=validated_data['reserva'].id)
+        reserva.estado = 'procesando'
+        reserva.save()
+        return transferencia
+
 class PrecioSerializer(serializers.ModelSerializer):
 
     class Meta:
