@@ -5,7 +5,8 @@
   margin-left: 4%;
   margin-right: 4%;
   width: 3%;
-  background-color: gray;
+  background-color: red;
+  opacity: 0.6;
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -30,7 +31,8 @@
   width: 30px;
   height: 30px;
   font-size: 10px;
-  background-color: gray;
+  background-color: red;
+  opacity: 0.6;
   padding: 0px;
   display: inline-block;
   font-weight: 400;

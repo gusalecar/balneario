@@ -112,14 +112,14 @@ export class ReservaCroquisComponent implements OnInit {
         (<HTMLInputElement>(
           document.getElementById(`c${posicion.numero}`)
         )).disabled = true;
-        document.getElementById(`c${posicion.numero}`).style.background = 'red';
+        document.getElementById(`c${posicion.numero}`).style.background = 'grey';
         document.getElementById(`c${posicion.numero}`).style.color = 'black';
       }
       if (posicion.tipo == 'sombrilla') {
         (<HTMLInputElement>(
           document.getElementById(`s${posicion.numero}`)
         )).disabled = true;
-        document.getElementById(`s${posicion.numero}`).style.background = 'red';
+        document.getElementById(`s${posicion.numero}`).style.background = 'grey';
         document.getElementById(`s${posicion.numero}`).style.color = 'black';
       }
     }
