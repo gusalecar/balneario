@@ -29,6 +29,9 @@ export class ReservaCroquisComponent implements OnInit {
   fechaFin: string = '2021-02-28';
   items: ItemModel[] = [];
   reservable: DetallesModel[] = [];
+  estacionamiento:boolean=true;
+  posicionestacionamiento:number=1;
+  checkEstado:boolean=false;
   constructor(private auth: AuthService, private router: Router) {}
   ngOnInit(): void {
     this.ctrFlechasCarpas = true;
@@ -78,9 +81,24 @@ export class ReservaCroquisComponent implements OnInit {
       };
       this.reservable.push(detalle);
     }
+    console.log(this.estacionamiento);
+    console.log(this.checkEstado);
+    console.log(this.posicionestacionamiento);
+
+      if(this.estacionamiento && this.checkEstado) {
+        detalle = {
+          fecha_inicio: '2020-12-01',
+          fecha_fin: '2020-12-01',
+          item: {
+            numero: this.posicionestacionamiento,
+            tipo: 'estacionamiento',
+          },
+        };
+        this.reservable.push(detalle);
+    }
   }
   comprar() {
-
+console.log(this.checkEstado)
      if (this.auth.estaAutenticado()) {
     Swal.fire({
       title: '¿Seguro que quiere confirmar la reserva?',
@@ -98,7 +116,7 @@ export class ReservaCroquisComponent implements OnInit {
           text: 'Espere por favor...',
         });
         Swal.showLoading();
-       this.cargarReserva();
+        this.cargarReserva();
         console.log(this.reservable);
         this.auth.reservar(this.reservable).subscribe((res) => {
         console.log(res);
@@ -150,6 +168,7 @@ export class ReservaCroquisComponent implements OnInit {
         )).disabled = true;
         document.getElementById(`c${posicion.numero}`).style.background = 'grey';
         document.getElementById(`c${posicion.numero}`).style.color = 'black';
+        document.getElementById(`c${posicion.numero}`).style.opacity = '0.5';
       }
       if (posicion.tipo == 'sombrilla') {
         (<HTMLInputElement>(
@@ -157,7 +176,17 @@ export class ReservaCroquisComponent implements OnInit {
         )).disabled = true;
         document.getElementById(`s${posicion.numero}`).style.background = 'grey';
         document.getElementById(`s${posicion.numero}`).style.color = 'black';
+        document.getElementById(`s${posicion.numero}`).style.opacity = '0.5';
       }
+      let cant=1;
+      if (posicion.tipo == 'estacionamiento') {
+        if(posicion.numero == this.posicionestacionamiento){this.posicionestacionamiento=this.posicionestacionamiento+1}
+        cant=cant+1;
+      }
+
+    }
+    if(this.posicionestacionamiento>19){
+      this.estacionamiento=false;
     }
   }
   reservableSeleccionar(id: string, tipo: string, numero: number) {
@@ -169,7 +198,7 @@ export class ReservaCroquisComponent implements OnInit {
         this.calcularTotal();
         console.log(this.carpas);
       } else {
-        document.getElementById(id).style.background = 'grey';
+        document.getElementById(id).style.background = 'red';
         this.carpas = this.eliminarNumero(numero, this.carpas);
         console.log(this.carpas);
         this.calcularTotal();
@@ -183,7 +212,7 @@ export class ReservaCroquisComponent implements OnInit {
         this.sombrilla = this.sombrillas.length;
         this.calcularTotal();
       } else {
-        document.getElementById(id).style.background = 'grey';
+        document.getElementById(id).style.background = 'red';
         this.sombrillas = this.eliminarNumero(numero, this.sombrillas);
         console.log(this.sombrillas);
         this.calcularTotal();
@@ -233,4 +262,12 @@ export class ReservaCroquisComponent implements OnInit {
       )).disabled = true;
     }
   }
+  haycochera():boolean{
+ return this.estacionamiento;
+}
+checkCochera(){
+
+  this.checkEstado=!this.checkEstado;
+  console.log(this.checkEstado);
+}
 }

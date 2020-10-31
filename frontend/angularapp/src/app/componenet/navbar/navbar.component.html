@@ -92,18 +92,18 @@
               </form>
             </div>
           </div>
-          
+
         </div>
       </div>
 
       <ul *ngIf="logueado" class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link text-center" [routerLink]="['listareservas']">
+          <a class="nav-link text-center" [routerLink]="['listareservas']" (click)="autenticado()">
             Mis reservas
           </a>
         </li>
         <li class="nav-item">
-          <span (click)="logout()" class="nav-link text-center" role="button">Cerrar sesión</span>        
+          <span (click)="logout()" class="nav-link text-center" role="button">Cerrar sesión</span>
         </li>
       </ul>
     </div>

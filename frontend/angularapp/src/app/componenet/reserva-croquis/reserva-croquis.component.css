@@ -132,11 +132,13 @@
 
 .formulario {
   background-color: rgba(0, 0, 0, 0.733);
-  font-size: 40px;
-  padding: 10px;
+  font-size: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
   margin-bottom: 5px;
   color: aliceblue;
-  text-align: left;
+  text-align: center;
 }
 
 .boton-reservar {
@@ -163,7 +165,5 @@
 }
 
 .atencion {
-  background-color: red;
-  color: white;
-  opacity: 0.6;
+font-size: 15px;
 }

@@ -1,28 +1,40 @@
 <!--Area calculadora de precio total-->
-<div class="container-fluid bg-sand">
-  <div class="atencion">
-    <p class="m-0">
-      <strong>Atencion:</strong> La capacidad de las carpas es de 4 personas
+<div class="container-fluid bg-sand p-0">
+
+  <form (ngSubmit)="comprar()" class="formulario">
+    <p class="atencion m-0 p-2">
+      <strong>Importante:</strong> La capacidad de las carpas es de 4 personas
       como maximo, para su visita recomendamos 1 carpa
     </p>
-  </div>
-  <form (ngSubmit)="comprar()">
-    <div class="formulario">
-      <span class="mr-3">Carpas: </span><span> {{ carpa }}</span>
-      <span> Sombrillas:</span><span> {{ sombrilla }}</span> <span> Total:</span
-      ><span>${{ total }}</span>
-      <button
-        class="boton-reservar align-bottom float-right"
-        id="botonReservar"
-      >
-        Reservar
-      </button>
-    </div>
+
+      <div class="form-row p-1 fuente-Calculadora">
+        <div class="form-group col-md-2">
+          <span >Carpas: {{carpa}}</span>
+        </div>
+        <div class="form-group col-md-2">
+          <span >Sombrillas: {{sombrilla}}</span>
+        </div>
+        <div class="form-group col-md-2" *ngIf="haycochera()" >
+          <input class=" mce-i-checkbox" name="check" type="checkbox" (click)="checkCochera()">
+          <label class="form-check-label ml-2" for="autoSizingCheck">
+            Cochera
+          </label>
+        </div>
+        <div class="form-group col-md-2 " *ngIf="!haycochera()">
+          <span>No hay cocheras</span>
+        </div>
+
+        <div class="form-group col-md-2 ">
+          <span>Total: $ {{total}} </span>
+        </div>
+
+        <button type="submit" class="btn btn-cel form-group col-md-3" id="botonReservar">Reservar</button>
+      </div>
   </form>
 
   <!--Area carpas-->
-  <div class="">
-    <div
+ <!-- <div class="">-->
+ <!--   <div
       class="link-ss"
       data-toggle="collapse"
       href="#carpa"
@@ -36,7 +48,7 @@
         ><i class="float-right fa fa-arrow-up" *ngIf="!ctrFlechasCarpas"></i>
       </button>
     </div>
-    <div id="carpa" class="collapse">
+    <div id="carpa" class="collapse">-->
       <div>
         <div class="cabezeraizquierda">
           <button
@@ -776,14 +788,14 @@
               82
             </button>
           </div>
-        </div>
-      </div>
+    <!--    </div>
+      </div>-->
     </div>
   </div>
 
   <!--Area sombrillas-->
   <div>
-    <div
+   <!-- <div
       class="link-ss"
       data-toggle="collapse"
       href="#sombrilla"
@@ -804,7 +816,7 @@
         ></i>
       </button>
     </div>
-    <div id="sombrilla" class="pb-1 collapse">
+    <div id="sombrilla" class="pb-1 collapse">-->
       <!--primera fila-->
       <div class="mt-2 text-center">
         <button
@@ -1003,8 +1015,8 @@
           27
         </button>
       </div>
-    </div>
-  </div>
+<!--    </div>
+  </div>-->
 
 </div>
 

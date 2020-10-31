@@ -128,4 +128,9 @@ export class NavbarComponent implements OnInit {
     this.auth.logout();
     this.logueado = false;
   }
+  autenticado(){
+    this.auth.estaAutenticado();
+
+  }
+
 }
