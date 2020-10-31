@@ -168,6 +168,7 @@ console.log(this.checkEstado)
         )).disabled = true;
         document.getElementById(`c${posicion.numero}`).style.background = 'grey';
         document.getElementById(`c${posicion.numero}`).style.color = 'black';
+        document.getElementById(`c${posicion.numero}`).style.opacity = '0.5';
       }
       if (posicion.tipo == 'sombrilla') {
         (<HTMLInputElement>(
@@ -175,6 +176,7 @@ console.log(this.checkEstado)
         )).disabled = true;
         document.getElementById(`s${posicion.numero}`).style.background = 'grey';
         document.getElementById(`s${posicion.numero}`).style.color = 'black';
+        document.getElementById(`s${posicion.numero}`).style.opacity = '0.5';
       }
       let cant=1;
       if (posicion.tipo == 'estacionamiento') {
@@ -196,7 +198,7 @@ console.log(this.checkEstado)
         this.calcularTotal();
         console.log(this.carpas);
       } else {
-        document.getElementById(id).style.background = 'grey';
+        document.getElementById(id).style.background = 'red';
         this.carpas = this.eliminarNumero(numero, this.carpas);
         console.log(this.carpas);
         this.calcularTotal();
@@ -210,7 +212,7 @@ console.log(this.checkEstado)
         this.sombrilla = this.sombrillas.length;
         this.calcularTotal();
       } else {
-        document.getElementById(id).style.background = 'grey';
+        document.getElementById(id).style.background = 'red';
         this.sombrillas = this.eliminarNumero(numero, this.sombrillas);
         console.log(this.sombrillas);
         this.calcularTotal();
