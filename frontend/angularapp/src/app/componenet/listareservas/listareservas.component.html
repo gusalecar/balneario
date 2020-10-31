@@ -1,4 +1,5 @@
-<table class="table">
+<div class="container-fluid bg-sand py-4">
+<!--<table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Id</th>
@@ -29,4 +30,30 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table>-->
+<div class="row row-cols-1 row-cols-md-3"  >
+  <div class="col mb-2" *ngFor="let reserva of reservas">
+    <div class="card card-reserva">
+      <div class="encabezadoCard">
+      <span>Id: {{ reservas.indexOf(reserva) }}</span>
+      <span class="float-right">{{ reserva.fecha | date}} </span>
+      </div>
+      <div class="card-body pl-0 pt-1 pb-1 " >
+        <h5 class="card-title mb-0 " >Detalle de reserva</h5>
+        <hr>
+        <div class="item-style ">
+        <span><strong> CheckIn:</strong> {{reserva.detalles[0].fecha_inicio | date}}</span><br>
+        <span><strong> CheckOut:</strong> {{reserva.detalles[0].fecha_fin | date}}</span><br>
+        <span><strong> Estado: </strong> {{reserva.estado}}</span>
+      </div>
+
+      <hr>
+      <div class=" botones">
+        <button class="btn btn-primary botones-Reserva" >Items de la reserva</button>
+        <button *ngIf="reserva.estado=='impago'" class="botones-Reserva btn btn-primary ">Pagar</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
