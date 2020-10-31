@@ -49,3 +49,14 @@ select,
 option{
 background:rgba(1, 1,1, 0.5);
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.boton-pago{
+  border-color: #095B93;;
+  margin: 5px;
+}
+.boton-pago:hover{
+  opacity: 0.9;
+  background: #095B93 ;
+}

@@ -13,13 +13,32 @@
         <span><strong> CheckIn:</strong> {{reserva.detalles[0].fecha_inicio | date}}</span><br>
         <span><strong> CheckOut:</strong> {{reserva.detalles[0].fecha_fin | date}}</span><br>
         <span><strong> Estado: </strong> {{reserva.estado}}</span>
-      </div>
 
-      <hr>
-      <div class=" botones">
-        <button class="btn btn-cel botones-Reserva" >Items de la reserva</button>
-        <button *ngIf="reserva.estado=='impago'" class="btn botones-Reserva btn-cel ">Pagar</button>
+        <ng-template #verItem let-modal>
+          <div class="modal-header" style="font-size: 30px;font-style: normal ;"><strong>Items de la reserva </strong></div>
+          <div class="modal-boody p-3">
+            <div *ngFor="let item of reserva.detalles">
+            <span class="p-1">{{item.item.tipo}} numero {{item.item.numero}}</span>
+          </div>
+          </div>
+          <div class="modal-footer"><button class="btn btn-cel" (click)="modal.close()"> Cerrar</button> </div>
+        </ng-template>
       </div>
+      <button class="btn btn-cel botones-Reserva" (click)="modal.open(verItem)">Items de la reserva</button>
+
+        <ng-template #pagar let-modal>
+          <div class="modal-header" style="font-size: 30px;font-style: normal ;"><strong>Elija el medio de pago</strong></div>
+          <div class="modal-boody">
+          <button class="btn boton-pago"><img src="https://png.pngtree.com/png-vector/20191011/ourlarge/pngtree-invoice-icon-png-image_1817550.jpg" class=" imagen"> Transferencia Bancaria</button>
+          <button class="btn boton-pago"><img src="https://calim.com.ar/wp-content/uploads/2020/01/mercado-libre-mercado-pago-percepciones.png" class=" imagen"><span>Mercado Pago</span></button>
+          <button class="btn boton-pago"><img src="https://lh3.googleusercontent.com/proxy/zCjurb0pfoCTL495VXPXknkk6JKmCeGtYC6bevN6BI1495_feyl5SwuTflgBx-16H-VwYlsgQxsRSFB1J1abPFXzWhhVhZDhKEmsvO_ivttoWnQ0a3nhBWEsRPSG1alfbmI" class="imagen"><span>Tarjeta de Debito</span></button>
+          <button class="btn boton-pago"><img src="https://lh3.googleusercontent.com/proxy/zCjurb0pfoCTL495VXPXknkk6JKmCeGtYC6bevN6BI1495_feyl5SwuTflgBx-16H-VwYlsgQxsRSFB1J1abPFXzWhhVhZDhKEmsvO_ivttoWnQ0a3nhBWEsRPSG1alfbmI" class="imagen"><span>Tarjeta de Credito</span></button>
+          </div>
+          <div class="modal-footer"><button class="btn btn-cel" (click)="modal.close()"> Cerrar</button> </div>
+        </ng-template>
+        <button *ngIf="reserva.estado=='impago'" class="btn botones-Reserva btn-cel " (click)="modal.open(pagar)">Pagar</button>
+
+
       </div>
     </div>
   </div>
