@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 
 import { ReservaComponent } from './componenet/reserva/reserva.component';
-import { RecuperarpwsComponent } from './componenet/recuperarpws/recuperarpws.component';
 
 const routes: Routes = [];
 
