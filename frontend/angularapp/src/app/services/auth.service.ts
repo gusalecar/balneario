@@ -119,6 +119,7 @@ export class AuthService {
 
   estaAutenticado(): boolean {
     if (!localStorage.getItem('token')) {
+      this.logout();
       return false;
     }
     const expira = Number(localStorage.getItem('expira'));
