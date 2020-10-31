@@ -7,27 +7,28 @@
       como maximo, para su visita recomendamos 1 carpa
     </p>
 
-      <div class="form-row p-2 ">
+      <div class="form-row p-1 fuente-Calculadora">
         <div class="form-group col-md-2">
           <span >Carpas: {{carpa}}</span>
         </div>
         <div class="form-group col-md-2">
-          <span >Sombrillas: {{sombrillas}}</span>
+          <span >Sombrillas: {{sombrilla}}</span>
         </div>
-        <div class="form-group col-md-3">
-          <span >Cochera: <select class=" swal2-select p-0 m-0 " id="select">
-            <option value="0" selected>0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select></span>
+        <div class="form-group col-md-2" *ngIf="haycochera()" >
+          <input class=" mce-i-checkbox" name="check" type="checkbox" (click)="checkCochera()">
+          <label class="form-check-label ml-2" for="autoSizingCheck">
+            Cochera
+          </label>
         </div>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-2 " *ngIf="!haycochera()">
+          <span>No hay cocheras</span>
+        </div>
+
+        <div class="form-group col-md-2 ">
           <span>Total: $ {{total}} </span>
         </div>
-        <button type="submit" class="btn btn-cel form-group col-md-2" id="botonReservar">Reservar</button>
+
+        <button type="submit" class="btn btn-cel form-group col-md-3" id="botonReservar">Reservar</button>
       </div>
   </form>
 
