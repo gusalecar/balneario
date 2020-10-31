@@ -1,203 +1,111 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a href="#" class="navbar-brand"
-    >Balneario
-    <b>Pepe</b>
-  </a>
+<div class="bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark container">
+    <a href="#" class="navbar-brand">Balneario
+      <b>Pepe</b>
+    </a>
 
-  <button
-    type="button"
-    class="navbar-toggler"
-    data-toggle="collapse"
-    data-target="#navbarCollapse"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!-- Collection of nav links, forms, and other content for toggling -->
-  <div
-    id="navbarCollapse"
-    class="collapse navbar-collapse justify-content-start"
-  >
-    <div *ngIf="noLogueado" class="navbar-nav ml-auto action-buttons">
-      <div class="nav-item dropdown">
-        <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle mr-4"
-          >Iniciar Sesión</a
-        >
-        <div class="dropdown-menu action-form">
-          <form
-            (ngSubmit)="onSubmitLogin(formularioLogin)"
-            #formularioLogin="ngForm"
-          >
-            <p class="hint-text">
-              Inicie sesión con su cuenta de redes sociales
-            </p>
-            <div class="form-group social-btn clearfix">
-              <a href="#" class="btn btn-secondary facebook-btn float-left"
-                ><i class="fa fa-facebook"></i> Facebook</a
-              >
-              <a href="#" class="btn btn-secondary twitter-btn float-right"
-                ><i class="fa fa-twitter"></i> Twitter</a
-              >
-            </div>
-            <div class="or-seperator"><b>o</b></div>
-            <div class="form-group">
-              <span
-                *ngIf="
-                  formularioLogin.submitted &&
-                  formularioLogin.controls['usuariologin'].errors
-                "
-                class="text-danger"
-                >El Usuario es necesario</span
-              >
-              <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="usuariologin.usuario"
-                name="usuariologin"
-                placeholder="Usuario"
-                required="required"
-              />
-            </div>
-            <div class="form-group">
-              <span
-                *ngIf="
-                  formularioLogin.submitted &&
-                  formularioLogin.controls['passwordLogin'].errors
-                "
-                class="text-danger"
-                >La contraseña es necesario</span
-              >
-              <input
-                type="password"
-                class="form-control"
-                [(ngModel)]="usuariologin.password"
-                name="passwordLogin"
-                placeholder="Contraseña"
-                required="required"
-              />
-            </div>
-            <input
-              type="submit"
-              class="btn btn-primary btn-block"
-              value="Entrar"
-            />
-            <div class="text-center mt-2">
-              <a [routerLink]="['pwd']"> ¿Olvidaste tu contraseña?</a>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="nav-item dropdown">
-        <a
-          href="#"
-          data-toggle="dropdown"
-          class="btn btn-primary dropdown-toggle sign-up-btn"
-          >Creá una Cuenta</a
-        >
-        <div class="dropdown-menu action-form">
-          <form (ngSubmit)="onSubmit(formulario)" #formulario="ngForm">
-            <p class="hint-text">
-              ¡Complete este formulario para crear su cuenta!
-            </p>
-            <div class="form-group">
-              <span
-                *ngIf="
-                  formulario.submitted && formulario.controls['usuario'].errors
-                "
-                class="text-danger"
-                >El usuario es obligatorio</span
-              >
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Usuario"
-                [(ngModel)]="usuario.usuario"
-                name="usuario"
-                required="required"
-              />
-            </div>
-            <div class="form-group">
-              <span
-                *ngIf="
-                  formulario.submitted && formulario.controls['password'].errors
-                "
-                class="text-danger"
-                >La contraseña es obligatoria</span
-              >
-              <div>
-                <span
-                  *ngIf="
-                    formulario.submitted && usuario.password != passwordConfirm
-                  "
-                  class="text-danger"
-                  >Las contraseñas no coinciden</span
-                >
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Collection of nav links, forms, and other content for toggling -->
+    <div id="navbarCollapse" class="collapse navbar-collapse">
+      <div *ngIf="!logueado" class="navbar-nav ml-auto">
+        <div class="nav-item dropdown">
+          <a href="#" data-toggle="dropdown" class="nav-link text-center">Iniciar sesión</a>
+          <div class="dropdown-menu dropdown-menu-right p-0 bg-dark text-light">
+            <form (ngSubmit)="onSubmitLogin(formularioLogin)" #formularioLogin="ngForm"
+              class="p-3" ngNativeValidate>
+              <!--
+              <p class="hint-text">
+                Inicie sesión con su cuenta de redes sociales
+              </p>
+              <div class="form-group social-btn clearfix">
+                <a href="#" class="btn btn-secondary facebook-btn float-left"><i class="fa fa-facebook"></i> Facebook</a>
+                <a href="#" class="btn btn-secondary twitter-btn float-right"><i class="fa fa-twitter"></i> Twitter</a>
               </div>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Contraseña"
-                [(ngModel)]="usuario.password"
-                name="password"
-                required="required"
-              />
+              <div>o</div>
+              -->
+              <div class="col">
+                <div class="form-group row">
+                  <input type="text" class="form-control form-control-sm"
+                    [(ngModel)]="usuariologin.usuario" required placeholder="Usuario" name="usuario" />
+                </div>
+                <div class="form-group row">
+                  <input type="password" class="form-control form-control-sm"
+                    [(ngModel)]="usuariologin.password" required placeholder="Contraseña" name="password" />
+                </div>
+                <div class="row">
+                  <input type="submit" class="btn btn-primary btn-sm" value="Entrar" />
+                </div>
+              </div>
+              <!--
+              <div class="text-center">
+                <a [routerLink]="['pwd']">¿Olvidaste tu contraseña?</a>
+              </div>
+              -->
+            </form>
+          </div>
+        </div>
+
+        <div class="nav-item dropdown">
+          <div class="text-center">
+            <a href="#" data-toggle="dropdown" class="btn btn-primary">Creá una cuenta</a>
+            <div class="dropdown-menu dropdown-menu-right p-0 bg-dark text-light">
+              <form (ngSubmit)="onSubmit(formulario)" #formulario="ngForm" ngNativeValidate
+                class="p-3">
+                <div class="col">
+                  <div class="row">
+                    <p class="text-center">
+                      ¡Complete este formulario para crear su cuenta!
+                    </p>
+                  </div>
+                  <div class="form-group row">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="usuario.usuario"
+                      required placeholder="Usuario" name="usuario" />
+                  </div>
+                  <div class="form-group row">
+                    <input type="password" class="form-control form-control-sm" [(ngModel)]="usuario.password"
+                      required placeholder="Contraseña" name="password" />
+                  </div>
+                  <div class="form-group row">
+                    <span *ngIf="passDiferente"
+                      class="text-danger">Las contraseñas no coinciden</span>
+                    <input type="password" class="form-control form-control-sm" [(ngModel)]="passwordConfirm"
+                      required placeholder="Confirme contraseña" name="passwordConfirm"/>
+                  </div>
+                  <div class="form-group row">
+                    <input type="email" email class="form-control form-control-sm" [(ngModel)]="usuario.mail"
+                      required placeholder="E-mail" name="mail" />
+                  </div>
+                  <div class="form-group row">
+                    <div class="form-check">
+                      <input type="checkbox" class="form-check-input" required />
+                      <label class="form-check-label">
+                        Acepto los <a href="#">Terminos &amp; Condiciones</a>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <input type="submit" class="btn btn-primary btn-sm" value="Crear" />
+                  </div>
+                </div>
+              </form>
             </div>
-            <div class="form-group">
-              <input
-                type="password"
-                class="form-control"
-                name="password2"
-                [(ngModel)]="passwordConfirm"
-                placeholder="Confirmar Contraseña"
-                required="required"
-              />
-            </div>
-            <div class="form-group">
-              <span
-                *ngIf="
-                  formulario.submitted && formulario.controls['mail'].errors
-                "
-                class="text-danger"
-                >El mail es obligatorio</span
-              >
-              <input
-                type="email"
-                email
-                class="form-control"
-                placeholder="Correo Electronico"
-                [(ngModel)]="usuario.mail"
-                name="mail"
-                required="required"
-              />
-            </div>
-            <div class="form-group">
-              <label class="form-check-label"
-                ><input
-                  type="checkbox"
-                  name="terminoscondiciones"
-                  required="required"
-                />
-                Acepto los <a href="#">Terminos &amp; Condiciones</a></label
-              >
-            </div>
-            <input
-              type="submit"
-              class="btn btn-primary btn-block"
-              value="Crear"
-            />
-          </form>
+          </div>
+          
         </div>
       </div>
+
+      <ul *ngIf="logueado" class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link text-center" [routerLink]="['listareservas']">
+            Mis reservas
+          </a>
+        </li>
+        <li class="nav-item">
+          <span (click)="logout()" class="nav-link text-center" role="button">Cerrar sesión</span>        
+        </li>
+      </ul>
     </div>
-    <div *ngIf="!noLogueado" class="navbar-nav ml-auto action-buttons">
-      <button class="btn" [routerLink]="['listareservas']">
-        Mis Reservas
-      </button>
-          <button class="btn">Mi Perfil</button>
-          <!--funcionalidad a desarrollar si lo amerita-->
-
-          <button (click)="logout()" class="btn">Cerrar Sesion</button>
-          <i class="fa fa-user-circle-o fa-2x"></i>
-      </div>
-
-  </div>
-</nav>
+  </nav>
+</div>
