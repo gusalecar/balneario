@@ -16,13 +16,15 @@ export class NavbarComponent implements OnInit {
   usuario: UsuarioModel;
   passwordConfirm: string;
   usuariologin: UsuarioModel;
-  noLogueado: boolean;
+  logueado: boolean;
   user: string;
+  passDiferente: boolean;
+
   constructor(private auth: AuthService) {
     if (localStorage.getItem('token')) {
-      this.noLogueado = false;
+      this.logueado = true;
     } else {
-      this.noLogueado = true;
+      this.logueado = false;
     }
     if (localStorage.getItem('usuario')) {
       this.user = localStorage.getItem('usuario');
@@ -35,6 +37,13 @@ export class NavbarComponent implements OnInit {
   }
 
   onSubmit(formulario: NgForm) {
+    if (this.usuario.password != this.passwordConfirm) {
+      this.passDiferente = true;
+      return;
+    }
+    else {
+      this.passDiferente = false;
+    }
     if (formulario.invalid) {
       return;
     }
@@ -64,6 +73,16 @@ export class NavbarComponent implements OnInit {
         ) {
           Swal.fire({ icon: 'error', text: 'Usuario Existente' });
         }
+        if (
+          error.message ==
+          'Http failure response for http://localhost:8000/api/auth/register: 0 Unknown Error'
+        ) {
+          Swal.close();
+          Swal.fire({
+            icon: 'error',
+            text: 'Error de comunicacion con el servidor',
+          });
+        }
       }
     );
   }
@@ -81,8 +100,8 @@ export class NavbarComponent implements OnInit {
     this.auth.autenticarUsuario(this.usuariologin).subscribe(
       (respuesta) => {
         Swal.close();
-        this.noLogueado = false;
-        Swal.fire({ icon: 'success', title: 'Bienvenido!!' });
+        this.logueado = true;
+        Swal.fire({ icon: 'success', title: '¡Bienvenido!' });
       },
       (error) => {
         console.log(error);
@@ -104,8 +123,9 @@ export class NavbarComponent implements OnInit {
       }
     );
   }
+
   logout() {
     this.auth.logout();
-    this.noLogueado = true;
+    this.logueado = false;
   }
 }
