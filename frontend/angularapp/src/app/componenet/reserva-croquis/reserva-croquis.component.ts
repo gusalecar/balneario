@@ -80,14 +80,50 @@ export class ReservaCroquisComponent implements OnInit {
     }
   }
   comprar() {
-    if (this.auth.estaAutenticado()) {
-      this.cargarReserva();
-      console.log(this.reservable);
-      this.auth.reservar(this.reservable).subscribe((res) => {
+
+     if (this.auth.estaAutenticado()) {
+    Swal.fire({
+      title: '¿Seguro que quiere confirmar la reserva?',
+      text: `Esta por reservar ${this.carpa} carpas y ${this.sombrilla} sombrillas, por un monto total de $ ${this.total}`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, estoy seguro.',
+      cancelButtonText: 'No, quiero corregir.'
+    }).then((result) =>
+    {
+      if (result.value) {
+        Swal.fire({
+          icon: 'info',
+          allowOutsideClick: false,
+          text: 'Espere por favor...',
+        });
+        Swal.showLoading();
+       this.cargarReserva();
+        console.log(this.reservable);
+        this.auth.reservar(this.reservable).subscribe((res) => {
         console.log(res);
-      });
-      this.router.navigate(['posreserva', this.total]);
-    } else {
+
+        this.router.navigate(['listareservas']);
+        Swal.fire({
+          title:'Muy bien!! Su reseva se realizo exitosamente',
+          text:'Enviamos un e-mail con la informacion de pago, tambien puede acceder al menu Mis Reservas para visualizaarla y abonarla!',
+          icon: 'info'
+        })
+      },
+        (error) => {
+          Swal.fire({
+            title:'Sesion Expirada',
+            text:'Su Sesion ha expirado, ingrese nuevamente por favor!',
+            icon: 'error'
+        })
+        }
+        );
+      }
+      else if (result.dismiss === Swal.DismissReason.cancel) {}
+
+        })
+    }
+    else {
       Swal.fire({
         title: 'No puede seguir',
         text: 'Necesita estar registrado para realizar la reserva',
