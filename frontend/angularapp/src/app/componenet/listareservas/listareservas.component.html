@@ -1,36 +1,4 @@
 <div class="container-fluid bg-sand py-4">
-<!--<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Id</th>
-      <th scope="col">Fecha</th>
-      <th scope="col">Cantidad Item</th>
-      <th scope="col">Estado</th>
-      <th scope="col">Accion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let reserva of reservas" id="{{ reservas.indexOf(reserva) }}">
-      <th scope="row" name="reservaid">{{ reserva.id }}</th>
-      <td>{{ reserva.fecha }}</td>
-      <td>{{ reserva.detalles.length }}</td>
-
-      <td>{{ reserva.estado }}</td>
-      <td>
-        <div *ngIf="(reserva.estado=='impago')">
-        <input type="file" name="comprobante"/>
-        <button class="btn btn-primary" type="button" (click)="subirArchivo($event)">
-          Enviar
-        </button>
-      </div>
-        <div *ngIf="reserva.estado=='procesando'">
-          <span>Estamos chequeado su pago, el mismo se procesara en las siguientes 72hs </span>
-
-      </div>
-      </td>
-    </tr>
-  </tbody>
-</table>-->
 <div class="row row-cols-1 row-cols-md-3"  >
   <div class="col mb-2" *ngFor="let reserva of reservas">
     <div class="card card-reserva">
@@ -49,8 +17,8 @@
 
       <hr>
       <div class=" botones">
-        <button class="btn btn-primary botones-Reserva" >Items de la reserva</button>
-        <button *ngIf="reserva.estado=='impago'" class="botones-Reserva btn btn-primary ">Pagar</button>
+        <button class="btn btn-cel botones-Reserva" >Items de la reserva</button>
+        <button *ngIf="reserva.estado=='impago'" class="btn botones-Reserva btn-cel ">Pagar</button>
       </div>
       </div>
     </div>

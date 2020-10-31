@@ -1,23 +1,34 @@
 <!--Area calculadora de precio total-->
-<div class="container-fluid bg-sand">
-  <div class="atencion">
-    <p class="m-0">
-      <strong>Atencion:</strong> La capacidad de las carpas es de 4 personas
+<div class="container-fluid bg-sand p-0">
+
+  <form (ngSubmit)="comprar()" class="formulario">
+    <p class="atencion m-0 p-2">
+      <strong>Importante:</strong> La capacidad de las carpas es de 4 personas
       como maximo, para su visita recomendamos 1 carpa
     </p>
-  </div>
-  <form (ngSubmit)="comprar()">
-    <div class="formulario">
-      <span class="mr-3">Carpas: </span><span> {{ carpa }}</span>
-      <span> Sombrillas:</span><span> {{ sombrilla }}</span> <span> Total:</span
-      ><span>${{ total }}</span>
-      <button
-        class="boton-reservar align-bottom float-right"
-        id="botonReservar"
-      >
-        Reservar
-      </button>
-    </div>
+
+      <div class="form-row p-2 ">
+        <div class="form-group col-md-2">
+          <span >Carpas: {{carpa}}</span>
+        </div>
+        <div class="form-group col-md-2">
+          <span >Sombrillas: {{sombrillas}}</span>
+        </div>
+        <div class="form-group col-md-3">
+          <span >Cochera: <select class=" swal2-select p-0 m-0 " id="select">
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select></span>
+        </div>
+        <div class="form-group col-md-2">
+          <span>Total: $ {{total}} </span>
+        </div>
+        <button type="submit" class="btn btn-cel form-group col-md-2" id="botonReservar">Reservar</button>
+      </div>
   </form>
 
   <!--Area carpas-->

@@ -132,8 +132,8 @@
 
 .formulario {
   background-color: rgba(0, 0, 0, 0.733);
-  font-size: 40px;
-  padding: 10px;
+  font-size: 25px;
+  padding: 0px;
   margin-bottom: 5px;
   color: aliceblue;
   text-align: left;
@@ -163,7 +163,5 @@
 }
 
 .atencion {
-  background-color: red;
-  color: white;
-  opacity: 0.6;
+font-size: 15px;
 }
