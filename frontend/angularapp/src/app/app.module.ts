@@ -17,7 +17,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListareservasComponent } from './componenet/listareservas/listareservas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalComponent } from './modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     ReservaCroquisComponent,
     ListareservasComponent,
-    ModalComponent,
   ],
   imports: [
     HttpClientModule,
