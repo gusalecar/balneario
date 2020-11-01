@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { data } from 'jquery';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
 import { map , filter } from 'rxjs/operators'
