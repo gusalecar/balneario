@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-listareservas',
@@ -10,8 +10,8 @@ import {NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ListareservasComponent implements OnInit {
   reservas: any;
   file: File;
-  selectRadio:number=0;
-  constructor(private auth: AuthService, public modal:NgbModal) {}
+  selectRadio: number = 0;
+  constructor(private auth: AuthService, public modal: NgbModal) {}
 
   ngOnInit(): void {
     this.auth.verMisReservas().subscribe((resp) => {
@@ -19,14 +19,14 @@ export class ListareservasComponent implements OnInit {
       this.reservas = resp;
     });
   }
-  seleccionar(opcion:number){
-    this.selectRadio=opcion;
+  seleccionar(opcion: number) {
+    this.selectRadio = opcion;
   }
   fileEvent(fileInput: Event) {
     this.file = (<HTMLInputElement>fileInput.target).files[0];
   }
   subirArchivo(event) {
-    let fila = event.target.closest("tr");
+    let fila = event.target.closest('tr');
 
     let idReserva = fila.querySelector('[name="reservaid"]').innerText;
     let comprobante = fila.querySelector('[name="comprobante"]').files[0];
@@ -36,7 +36,6 @@ export class ListareservasComponent implements OnInit {
         console.log(resp);
         this.reservas = resp;
       });
-    }
-    );
+    });
   }
 }

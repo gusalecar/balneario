@@ -3,7 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
-import { map , filter } from 'rxjs/operators'
+import { map, filter } from 'rxjs/operators';
 
 import { DetallesModel } from '../../models/detalles.model';
 import { ItemModel } from '../../models/Item.model';
@@ -28,9 +28,9 @@ export class ReservaCroquisComponent implements OnInit {
   fechaFin: string = '2021-02-28';
   items: ItemModel[] = [];
   reservable: DetallesModel[] = [];
-  estacionamiento:boolean=true;
-  posicionestacionamiento:number=1;
-  checkEstado:boolean=false;
+  estacionamiento: boolean = true;
+  posicionestacionamiento: number = 1;
+  checkEstado: boolean = false;
   constructor(private auth: AuthService, private router: Router) {}
   ngOnInit(): void {
     this.ctrFlechasCarpas = true;
@@ -39,14 +39,13 @@ export class ReservaCroquisComponent implements OnInit {
     this.botonReservar();
     this.cargarPrecio();
   }
-  cargarPrecio(){
-    this.auth
-    .verPrecios().subscribe( (res:any[])=> {
+  cargarPrecio() {
+    this.auth.verPrecios().subscribe((res: any[]) => {
       this.precioCarpa = res[0].valor;
       this.precioSombrilla = res[1].valor;
       this.precioEstacionamiento = res[2].valor;
-    console.log(this.precioSombrilla)
-    })
+      console.log(this.precioSombrilla);
+    });
   }
   cargarReservable() {
     this.auth
@@ -84,63 +83,62 @@ export class ReservaCroquisComponent implements OnInit {
     console.log(this.checkEstado);
     console.log(this.posicionestacionamiento);
 
-      if(this.estacionamiento && this.checkEstado) {
-        detalle = {
-          fecha_inicio: '2020-12-01',
-          fecha_fin: '2020-12-01',
-          item: {
-            numero: this.posicionestacionamiento,
-            tipo: 'estacionamiento',
-          },
-        };
-        this.reservable.push(detalle);
+    if (this.estacionamiento && this.checkEstado) {
+      detalle = {
+        fecha_inicio: '2020-12-01',
+        fecha_fin: '2020-12-01',
+        item: {
+          numero: this.posicionestacionamiento,
+          tipo: 'estacionamiento',
+        },
+      };
+      this.reservable.push(detalle);
     }
   }
   comprar() {
-console.log(this.checkEstado)
-     if (this.auth.estaAutenticado()) {
-    Swal.fire({
-      title: '¿Seguro que quiere confirmar la reserva?',
-      text: `Esta por reservar ${this.carpa} carpas y ${this.sombrilla} sombrillas, por un monto total de $ ${this.total}`,
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, estoy seguro.',
-      cancelButtonText: 'No, quiero corregir.'
-    }).then((result) =>
-    {
-      if (result.value) {
-        Swal.fire({
-          icon: 'info',
-          allowOutsideClick: false,
-          text: 'Espere por favor...',
-        });
-        Swal.showLoading();
-        this.cargarReserva();
-        console.log(this.reservable);
-        this.auth.reservar(this.reservable).subscribe((res) => {
-        console.log(res);
-
-        this.router.navigate(['listareservas']);
-        Swal.fire({
-          title:'Muy bien!! Su reseva se realizo exitosamente',
-          text:'Enviamos un e-mail con la informacion de pago, tambien puede acceder al menu Mis Reservas para visualizaarla y abonarla!',
-          icon: 'info'
-        })
-      },
-        (error) => {
+    console.log(this.checkEstado);
+    if (this.auth.estaAutenticado()) {
+      Swal.fire({
+        title: '¿Seguro que quiere confirmar la reserva?',
+        text: `Esta por reservar ${this.carpa} carpas y ${this.sombrilla} sombrillas, por un monto total de $ ${this.total}`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, estoy seguro.',
+        cancelButtonText: 'No, quiero corregir.',
+      }).then((result) => {
+        if (result.value) {
           Swal.fire({
-            title:'Sesion Expirada',
-            text:'Su Sesion ha expirado, ingrese nuevamente por favor!',
-            icon: 'error'
-        })
-        }
-        );
-      }
-      else if (result.dismiss === Swal.DismissReason.cancel) {}
+            icon: 'info',
+            allowOutsideClick: false,
+            text: 'Espere por favor...',
+          });
+          Swal.showLoading();
+          this.cargarReserva();
+          console.log(this.reservable);
+          this.auth.reservar(this.reservable).subscribe(
+            (res) => {
+              console.log(res);
 
-        })
-    }
-    else {
+              this.router.navigate(['listareservas']);
+              Swal.fire({
+                title: 'Muy bien!! Su reseva se realizo exitosamente',
+                text:
+                  'Enviamos un e-mail con la informacion de pago, tambien puede acceder al menu Mis Reservas para visualizaarla y abonarla!',
+                icon: 'info',
+              });
+            },
+            (error) => {
+              Swal.fire({
+                title: 'Sesion Expirada',
+                text: 'Su Sesion ha expirado, ingrese nuevamente por favor!',
+                icon: 'error',
+              });
+            }
+          );
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+        }
+      });
+    } else {
       Swal.fire({
         title: 'No puede seguir',
         text: 'Necesita estar registrado para realizar la reserva',
@@ -165,7 +163,8 @@ console.log(this.checkEstado)
         (<HTMLInputElement>(
           document.getElementById(`c${posicion.numero}`)
         )).disabled = true;
-        document.getElementById(`c${posicion.numero}`).style.background = 'grey';
+        document.getElementById(`c${posicion.numero}`).style.background =
+          'grey';
         document.getElementById(`c${posicion.numero}`).style.color = 'black';
         document.getElementById(`c${posicion.numero}`).style.opacity = '0.5';
       }
@@ -173,19 +172,21 @@ console.log(this.checkEstado)
         (<HTMLInputElement>(
           document.getElementById(`s${posicion.numero}`)
         )).disabled = true;
-        document.getElementById(`s${posicion.numero}`).style.background = 'grey';
+        document.getElementById(`s${posicion.numero}`).style.background =
+          'grey';
         document.getElementById(`s${posicion.numero}`).style.color = 'black';
         document.getElementById(`s${posicion.numero}`).style.opacity = '0.5';
       }
-      let cant=1;
+      let cant = 1;
       if (posicion.tipo == 'estacionamiento') {
-        if(posicion.numero == this.posicionestacionamiento){this.posicionestacionamiento=this.posicionestacionamiento+1}
-        cant=cant+1;
+        if (posicion.numero == this.posicionestacionamiento) {
+          this.posicionestacionamiento = this.posicionestacionamiento + 1;
+        }
+        cant = cant + 1;
       }
-
     }
-    if(this.posicionestacionamiento>19){
-      this.estacionamiento=false;
+    if (this.posicionestacionamiento > 19) {
+      this.estacionamiento = false;
     }
   }
   reservableSeleccionar(id: string, tipo: string, numero: number) {
@@ -246,7 +247,9 @@ console.log(this.checkEstado)
   }
   calcularTotal() {
     console.log(this.precioSombrilla);
-    this.total = this.precioCarpa * this.carpas.length + this.precioSombrilla*this.sombrillas.length;
+    this.total =
+      this.precioCarpa * this.carpas.length +
+      this.precioSombrilla * this.sombrillas.length;
     this.botonReservar();
   }
 
@@ -261,12 +264,11 @@ console.log(this.checkEstado)
       )).disabled = true;
     }
   }
-  haycochera():boolean{
- return this.estacionamiento;
-}
-checkCochera(){
-
-  this.checkEstado=!this.checkEstado;
-  console.log(this.checkEstado);
-}
+  haycochera(): boolean {
+    return this.estacionamiento;
+  }
+  checkCochera() {
+    this.checkEstado = !this.checkEstado;
+    console.log(this.checkEstado);
+  }
 }

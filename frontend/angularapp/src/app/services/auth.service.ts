@@ -45,11 +45,11 @@ export class AuthService {
 
     var formData = new FormData();
 
-    formData.append("reserva", id);
-    formData.append("comprobante", file);
+    formData.append('reserva', id);
+    formData.append('comprobante', file);
 
     return this.http.post(`${this.url}api/transferencias/`, formData, {
-      headers
+      headers,
     });
   }
   verMisReservas() {
@@ -59,12 +59,12 @@ export class AuthService {
     });
     return this.http.get(`${this.url}api/reservas/`, { headers });
   }
-  verPrecios(){
-   // this.userToken = localStorage.getItem('token');
-   // const headers = new HttpHeaders({
-   //   Authorization: `Bearer ${this.userToken}`,
-   // });
-    return this.http.get(`${this.url}api/precios/`)
+  verPrecios() {
+    // this.userToken = localStorage.getItem('token');
+    // const headers = new HttpHeaders({
+    //   Authorization: `Bearer ${this.userToken}`,
+    // });
+    return this.http.get(`${this.url}api/precios/`);
   }
   disponibilidadReeservable(
     fechaInicio: string,
