@@ -1,46 +1,48 @@
-<div class="container-fluid bg-sand py-4">
-<div class="row row-cols-1 row-cols-md-3"  >
-  <div class="col mb-2" *ngFor="let reserva of reservas">
-    <div class="card card-reserva">
-      <div class="encabezadoCard">
-      <span>Id: {{ reservas.indexOf(reserva) }}</span>
-      <span class="float-right">{{ reserva.fecha | date}} </span>
-      </div>
-      <div class="card-body pl-0 pt-1 pb-1 " >
-        <h5 class="card-title mb-0 " >Detalle de reserva</h5>
-        <hr>
-        <div class="item-style ">
-        <span><strong> CheckIn:</strong> {{reserva.detalles[0].fecha_inicio | date}}</span><br>
-        <span><strong> CheckOut:</strong> {{reserva.detalles[0].fecha_fin | date}}</span><br>
-        <span><strong> Estado: </strong> {{reserva.estado}}</span>
-
-        <ng-template #verItem let-modal>
-          <div class="modal-header" style="font-size: 30px;font-style: normal ;"><strong>Items de la reserva </strong></div>
-          <div class="modal-boody p-3">
-            <div *ngFor="let item of reserva.detalles">
-            <span class="p-1">{{item.item.tipo}} numero {{item.item.numero}}</span>
+<div class="bg-sand">
+  <div class="container py-5">
+    <h1 class="mb-3">Mis reservas</h1>
+    <ul class="list-group">
+      <div class="list-group-item" *ngFor="let reserva of reservas">
+        <div class="row">
+          <div class="col">
+            <ul class="list-unstyled">
+              <li><strong>ID:</strong> {{ reserva.id }}</li>
+              <li><strong>Estado:</strong> {{ reserva.estado }}</li>
+              <li><strong>Importe:</strong> ${{ precioTotal(reserva.detalles) }}</li>
+              <li><strong>Fecha:</strong> {{ reserva.fecha | date }}</li>
+            </ul>
           </div>
+
+          <div class="col-auto d-flex flex-column">
+            <a class="btn btn-cel my-auto" data-toggle="modal" href="#modalItems{{ reserva.id }}" role="button">Items</a>
+            <div class="modal fade" id="modalItems{{ reserva.id }}" tabindex="-1">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Items</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <ul>
+                      <li *ngFor="let detalle of reserva.detalles">
+                        <strong>{{ detalle.item.tipo | titlecase }} {{ detalle.item.numero }}:</strong>
+                        del {{ detalle.fecha_inicio }} al {{ detalle.fecha_fin }}
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a *ngIf="reserva.estado=='impago'" class="btn btn-cel mb-auto" role="button">Pagar</a> <!-- A nuevo componente de pago -->
           </div>
-          <div class="modal-footer"><button class="btn btn-cel" (click)="modal.close()"> Cerrar</button> </div>
-        </ng-template>
+        </div>
       </div>
-      <button class="btn btn-cel botones-Reserva" (click)="modal.open(verItem)">Items de la reserva</button>
-
-        <ng-template #pagar let-modal>
-          <div class="modal-header" style="font-size: 30px;font-style: normal ;"><strong>Elija el medio de pago</strong></div>
-          <div class="modal-boody">
-          <button class="btn boton-pago"><img src="https://png.pngtree.com/png-vector/20191011/ourlarge/pngtree-invoice-icon-png-image_1817550.jpg" class=" imagen"> Transferencia Bancaria</button>
-          <button class="btn boton-pago"><img src="https://calim.com.ar/wp-content/uploads/2020/01/mercado-libre-mercado-pago-percepciones.png" class=" imagen"><span>Mercado Pago</span></button>
-          <button class="btn boton-pago"><img src="https://lh3.googleusercontent.com/proxy/zCjurb0pfoCTL495VXPXknkk6JKmCeGtYC6bevN6BI1495_feyl5SwuTflgBx-16H-VwYlsgQxsRSFB1J1abPFXzWhhVhZDhKEmsvO_ivttoWnQ0a3nhBWEsRPSG1alfbmI" class="imagen"><span>Tarjeta de Debito</span></button>
-          <button class="btn boton-pago"><img src="https://lh3.googleusercontent.com/proxy/zCjurb0pfoCTL495VXPXknkk6JKmCeGtYC6bevN6BI1495_feyl5SwuTflgBx-16H-VwYlsgQxsRSFB1J1abPFXzWhhVhZDhKEmsvO_ivttoWnQ0a3nhBWEsRPSG1alfbmI" class="imagen"><span>Tarjeta de Credito</span></button>
-          </div>
-          <div class="modal-footer"><button class="btn btn-cel" (click)="modal.close()"> Cerrar</button> </div>
-        </ng-template>
-        <button *ngIf="reserva.estado=='impago'" class="btn botones-Reserva btn-cel " (click)="modal.open(pagar)">Pagar</button>
-
-
-      </div>
-    </div>
+    </ul>
   </div>
-</div>
 </div>
