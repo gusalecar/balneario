@@ -39,7 +39,8 @@
               </div>
             </div>
 
-            <a *ngIf="reserva.estado=='impago'" class="btn btn-cel mb-auto" role="button">Pagar</a> <!-- A nuevo componente de pago -->
+            <a *ngIf="reserva.estado=='impago'" class="btn btn-cel mb-auto" role="button"
+              [routerLink]="['/pago']" [queryParams]="{id: reserva.id}">Pagar</a> <!-- A nuevo componente de pago -->
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { ListareservasComponent } from './componenet/listareservas/listareservas
 
 import { AuthGuard } from './guard/auth.guard';
 import { from } from 'rxjs';
+import { PagoComponent } from './componenet/pago/pago.component';
 
 const APP_ROUTES: Routes = [
   { path: 'home', component: ReservaComponent },
@@ -14,6 +15,7 @@ const APP_ROUTES: Routes = [
     component: ListareservasComponent,
     canActivate: [AuthGuard],
   },
+  { path: 'pago', component: PagoComponent, canActivate: [AuthGuard], },
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
 

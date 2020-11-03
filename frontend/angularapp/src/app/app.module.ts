@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListareservasComponent } from './componenet/listareservas/listareservas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PagoComponent } from './componenet/pago/pago.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     ReservaCroquisComponent,
     ListareservasComponent,
+    PagoComponent,
   ],
   imports: [
     HttpClientModule,
