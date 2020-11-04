@@ -30,6 +30,6 @@ pipenv run migrate
 ```
 
 ## Uso
-1. Iniciar el frontend ejecutando ```ng serve``` desde la carpeta frontend/angularapp.
+1. Iniciar el frontend ejecutando ```npm start``` desde la carpeta frontend/angularapp.
 2. Desde la raiz del proyecto ejecutar ```pipenv run runserver```.
 3. Acceder desde http://localhost:4200/.
