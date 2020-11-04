@@ -17,8 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ListareservasComponent } from './componenet/listareservas/listareservas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModalComponent } from './modal/modal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PagoComponent } from './componenet/pago/pago.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     ReservaCroquisComponent,
     ListareservasComponent,
-    ModalComponent,
+    PagoComponent,
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +36,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AppRoutingModule,
     APP_ROUTING,
     BrowserAnimationsModule,
-    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

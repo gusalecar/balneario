@@ -40,8 +40,7 @@ export class NavbarComponent implements OnInit {
     if (this.usuario.password != this.passwordConfirm) {
       this.passDiferente = true;
       return;
-    }
-    else {
+    } else {
       this.passDiferente = false;
     }
     if (formulario.invalid) {
@@ -128,9 +127,7 @@ export class NavbarComponent implements OnInit {
     this.auth.logout();
     this.logueado = false;
   }
-  autenticado(){
+  autenticado() {
     this.auth.estaAutenticado();
-
   }
-
 }

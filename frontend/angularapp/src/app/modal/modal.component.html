@@ -1,9 +1,0 @@
-  <p>modal works!</p>
-<ng-template #contenido let-modal>
-
-  <div class="modal-header">Titulo modal</div>
-  <div class="modal-boody">contenido modal</div>
-  <div class="modal-footer"><button class="btn btn-cel" (click)="modal.close()"> Cerrar</button> </div>
-</ng-template>
-
-<button type="button" class="btn button-outline" (click)="modal.open(contenido)">Lanzar Modal</button>
