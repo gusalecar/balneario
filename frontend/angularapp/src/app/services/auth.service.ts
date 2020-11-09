@@ -27,10 +27,18 @@ export class AuthService {
     const authData2 = {
       username: usuario.usuario,
       password: usuario.password,
+      grant_type: 'password'
     };
-    return this.http.post(`${this.url}api/auth/token`, authData2).pipe(
+    return this.http.post(`${this.url}api/auth/token`, authData2, {
+      headers: {
+          'Content-Type':  'application/json',
+          'Authorization': 'Basic ' + btoa(
+            'Ygb0LX99akAbijtkumNG3VSV9yT9PYPcbpRtmLF0:wucDfCvI7LubiVb1V7vmgCCMd3xUtZV0oJGoMih6NT5E4DeHZDT66PuD06SNDsX7mO3umMcCF3S27qRPm6k4Nm3WbtLpa75ujb2Q4mkwvS5RBYcUKCFMoYiw5FYtTcm9')
+        }
+      }).pipe(
       map((resp) => {
-        this.guardarToken(resp['access']);
+        console.log(resp);
+        this.guardarToken(resp['access_token']);
         this.guardarUsuario(usuario.usuario);
         return resp;
       })
