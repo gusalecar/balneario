@@ -162,8 +162,8 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 SOCIAL_AUTH_FACEBOOK_API_VERSION = '9.0'
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-    "http://127.0.0.1:4200",
+    'http://localhost:4200',
+    'https://localhost:4200',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
