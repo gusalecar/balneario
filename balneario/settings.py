@@ -139,9 +139,27 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = (
-   'drf_social_oauth2.backends.DjangoOAuth2',
-   'django.contrib.auth.backends.ModelBackend',
+    # Facebook OAuth2
+    'social_core.backends.facebook.FacebookAppOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    # drf_social_oauth2
+    'drf_social_oauth2.backends.DjangoOAuth2',
+
+    # Django
+    'django.contrib.auth.backends.ModelBackend',
 )
+
+# Facebook configuration
+SOCIAL_AUTH_FACEBOOK_KEY = '684437409159465'
+# SOCIAL_AUTH_FACEBOOK_SECRET en local_settings.py
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
+
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '9.0'
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
