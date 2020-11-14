@@ -15,6 +15,22 @@ export class AuthService {
   usuario: string;
   constructor(private http: HttpClient) {}
 
+  convertFBToken(token: string) {
+    return this.http.post(
+      `${this.url}api/auth/convert-token/`,
+      {
+        grant_type: 'convert_token',
+        client_id: 'Ygb0LX99akAbijtkumNG3VSV9yT9PYPcbpRtmLF0',
+        client_secret: 'wucDfCvI7LubiVb1V7vmgCCMd3xUtZV0oJGoMih6NT5E4DeHZDT66PuD06SNDsX7mO3umMcCF3S27qRPm6k4Nm3WbtLpa75ujb2Q4mkwvS5RBYcUKCFMoYiw5FYtTcm9',
+        backend: 'facebook',
+        token: token,
+      }).pipe(map(
+        resp => {
+          this.guardarToken(resp['access_token']);
+        })
+    );
+  }
+
   nuevoUsuario(usuario: UsuarioModel) {
     const authData = {
       username: usuario.usuario,

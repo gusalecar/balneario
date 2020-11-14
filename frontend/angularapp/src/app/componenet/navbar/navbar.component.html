@@ -13,6 +13,9 @@
         <div class="nav-item dropdown">
           <a href="#" data-toggle="dropdown" class="nav-link text-center">Iniciar sesión</a>
           <div class="dropdown-menu dropdown-menu-right p-0 bg-dark text-light">
+            <div class="px-3 pt-3">
+              <button class="btn btn-primary btn-sm" (click)="signInWithFB()">FB</button>
+            </div>
             <form (ngSubmit)="onSubmitLogin(formularioLogin)" #formularioLogin="ngForm"
               class="p-3" ngNativeValidate>
               <!--

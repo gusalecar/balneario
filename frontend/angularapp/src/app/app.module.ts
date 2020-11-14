@@ -18,6 +18,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { ListareservasComponent } from './componenet/listareservas/listareservas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PagoComponent } from './componenet/pago/pago.component';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import { FacebookLoginProvider } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -36,8 +41,22 @@ import { PagoComponent } from './componenet/pago/pago.component';
     AppRoutingModule,
     APP_ROUTING,
     BrowserAnimationsModule,
+    SocialLoginModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('684437409159465'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
