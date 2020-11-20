@@ -13,6 +13,9 @@ export class AuthService {
   private url = 'http://localhost:8000/';
   userToken: string;
   usuario: string;
+  private clientId = 'Ygb0LX99akAbijtkumNG3VSV9yT9PYPcbpRtmLF0';
+  private clientSecret = 'wucDfCvI7LubiVb1V7vmgCCMd3xUtZV0oJGoMih6NT5E4DeHZDT66PuD06SNDsX7mO3umMcCF3S27qRPm6k4Nm3WbtLpa75ujb2Q4mkwvS5RBYcUKCFMoYiw5FYtTcm9';
+
   constructor(private http: HttpClient) {}
 
   convertFBToken(token: string) {
@@ -20,8 +23,8 @@ export class AuthService {
       `${this.url}api/auth/convert-token/`,
       {
         grant_type: 'convert_token',
-        client_id: 'Ygb0LX99akAbijtkumNG3VSV9yT9PYPcbpRtmLF0',
-        client_secret: 'wucDfCvI7LubiVb1V7vmgCCMd3xUtZV0oJGoMih6NT5E4DeHZDT66PuD06SNDsX7mO3umMcCF3S27qRPm6k4Nm3WbtLpa75ujb2Q4mkwvS5RBYcUKCFMoYiw5FYtTcm9',
+        client_id: this.clientId,
+        client_secret: this.clientSecret,
         backend: 'facebook',
         token: token,
       }).pipe(map(
@@ -49,7 +52,7 @@ export class AuthService {
       headers: {
           'Content-Type':  'application/json',
           'Authorization': 'Basic ' + btoa(
-            'Ygb0LX99akAbijtkumNG3VSV9yT9PYPcbpRtmLF0:wucDfCvI7LubiVb1V7vmgCCMd3xUtZV0oJGoMih6NT5E4DeHZDT66PuD06SNDsX7mO3umMcCF3S27qRPm6k4Nm3WbtLpa75ujb2Q4mkwvS5RBYcUKCFMoYiw5FYtTcm9')
+            `${this.clientId}:${this.clientSecret}`)
         }
       }).pipe(
       map((resp) => {
