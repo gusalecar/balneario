@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.db.models import Q
 from rest_framework import viewsets, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -57,8 +58,12 @@ class ItemViewSet(viewsets.ReadOnlyModelViewSet):
                 queryset = queryset.filter(habilitado=params['habilitado'].capitalize())
         if (params.get('fechainicio') is not None) & (params.get('fechafin') is not None):
             queryset = queryset.filter(
-                detalles__fecha_fin__lte=params['fechafin'],
-                detalles__fecha_inicio__gte=params['fechainicio']
+                Q(detalles__fecha_inicio__range=(params['fechainicio'], params['fechafin'])) |
+                Q(detalles__fecha_fin__range=(params['fechainicio'], params['fechafin'])) |
+                Q(
+                    detalles__fecha_inicio__lt=params['fechainicio'],
+                    detalles__fecha_fin__gt=params['fechafin']
+                )
             )
         return queryset
 
