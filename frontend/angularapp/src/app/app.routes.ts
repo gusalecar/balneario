@@ -9,7 +9,7 @@ import { PagoComponent } from './componenet/pago/pago.component';
 
 const APP_ROUTES: Routes = [
   { path: 'home', component: ReservaComponent },
-  { path: 'croquis', component: ReservaCroquisComponent },
+  { path: 'croquis/:inicio/:fin', component: ReservaCroquisComponent },
   {
     path: 'listareservas',
     component: ListareservasComponent,
