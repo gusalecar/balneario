@@ -139,6 +139,9 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = (
+    # Google OAuth2
+    'social_core.backends.google.GoogleOAuth2',
+
     # Facebook OAuth2
     'social_core.backends.facebook.FacebookAppOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
@@ -160,6 +163,15 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 }
 
 SOCIAL_AUTH_FACEBOOK_API_VERSION = '9.0'
+
+# Google configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '98916137208-3247mhgio62ikv9tb1o85hha08db3t4q.apps.googleusercontent.com' # pylint: disable=line-too-long
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET en local_settings.py
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+]
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:4200',
