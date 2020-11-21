@@ -18,20 +18,28 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  convertFBToken(token: string) {
+  convertToken(token: string, backend: string) {
     return this.http.post(
       `${this.url}api/auth/convert-token/`,
       {
         grant_type: 'convert_token',
         client_id: this.clientId,
         client_secret: this.clientSecret,
-        backend: 'facebook',
+        backend: backend,
         token: token,
       }).pipe(map(
         resp => {
           this.guardarToken(resp['access_token']);
         })
     );
+  }
+
+  convertFBToken(token: string) {
+    return this.convertToken(token, 'facebook');
+  }
+
+  convertGoogleToken(token: string) {
+    return this.convertToken(token, 'google-oauth2');
   }
 
   nuevoUsuario(usuario: UsuarioModel) {

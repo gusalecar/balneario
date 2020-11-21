@@ -22,7 +22,7 @@ import {
   SocialLoginModule,
   SocialAuthServiceConfig,
 } from 'angularx-social-login';
-import { FacebookLoginProvider } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -49,6 +49,12 @@ import { FacebookLoginProvider } from 'angularx-social-login';
       useValue: {
         autoLogin: false,
         providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '98916137208-3247mhgio62ikv9tb1o85hha08db3t4q.apps.googleusercontent.com'
+            )
+          },
           {
             id: FacebookLoginProvider.PROVIDER_ID,
             provider: new FacebookLoginProvider('684437409159465'),

@@ -6,8 +6,7 @@ import { UsuarioModel } from '../../models/usuario.model';
 
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
-import { SocialAuthService } from 'angularx-social-login';
-import { FacebookLoginProvider } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-navbar',
@@ -48,6 +47,20 @@ export class NavbarComponent implements OnInit {
       })
       .then((socialUser) => {
         this.auth.convertFBToken(socialUser.authToken).subscribe(
+          (res) => {
+            this.logueado = true;
+          }
+        )
+      });
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuth
+      .signIn(GoogleLoginProvider.PROVIDER_ID, {
+        scope: 'profile email',
+      })
+      .then((socialUser) => {
+        this.auth.convertGoogleToken(socialUser.authToken).subscribe(
           (res) => {
             this.logueado = true;
           }
