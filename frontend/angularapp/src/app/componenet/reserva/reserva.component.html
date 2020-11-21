@@ -34,10 +34,19 @@
           <input type="date" class="form-control" name="fechafin" [(ngModel)]="fechaFin" required>
         </div>
       </div>
-     <button type="submit" class="btn btn-cel ">Ver disponibilidad</button>
+     <button type="submit" class="btn btn-cel " >Ver disponibilidad</button>
     </form>
   </div>
 </div>
+
+<div>
+
+<app-reserva-croquis *ngIf="submit" [fechaIn]="fechaInicio"  [fechaOut]="fechaFin" name="croquis"></app-reserva-croquis>
+
+</div>
+
+
+
 
 <div class="container-fluid bg-azulclaro text-light">
   <div class="container">
@@ -45,7 +54,7 @@
   </div>
 
 
-  <div class="container pb-5">
+  <div class="container pb-5" >
     <!--First row-->
     <div class="row features-small">
 

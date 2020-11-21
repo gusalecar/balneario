@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -33,13 +33,18 @@ export class ReservaCroquisComponent implements OnInit {
   posicionestacionamiento: number = 1;
   checkEstado: boolean = false;
 
+@Input() fechaIn:string;
+@Input() fechaOut:string;
+
   constructor(private auth: AuthService, private router: Router, private route: ActivatedRoute) {
 
 
   }
   ngOnInit(): void {
-    this.fechaInicio=this.route.snapshot.paramMap.get('inicio')
-    this.fechaFin=this.route.snapshot.paramMap.get('fin')
+    this.fechaInicio=this.fechaIn
+    //this.route.snapshot.paramMap.get('inicio')
+    this.fechaFin=this.fechaOut
+    //this.route.snapshot.paramMap.get('fin')
 
 
     this.ctrFlechasCarpas = true;
@@ -68,8 +73,8 @@ export class ReservaCroquisComponent implements OnInit {
     var detalle: DetallesModel;
     for (let value of this.carpas) {
       detalle = {
-        fecha_inicio: '2020-12-01',
-        fecha_fin: '2020-12-01',
+        fecha_inicio: this.fechaInicio,
+        fecha_fin: this.fechaFin,
         item: {
           numero: value,
           tipo: 'carpa',
@@ -79,8 +84,8 @@ export class ReservaCroquisComponent implements OnInit {
     }
     for (let value of this.sombrillas) {
       detalle = {
-        fecha_inicio: '2020-12-01',
-        fecha_fin: '2020-12-01',
+        fecha_inicio: this.fechaInicio,
+        fecha_fin: this.fechaFin,
         item: {
           numero: value,
           tipo: 'sombrilla',
@@ -94,8 +99,9 @@ export class ReservaCroquisComponent implements OnInit {
 
     if (this.estacionamiento && this.checkEstado) {
       detalle = {
-        fecha_inicio: '2020-12-01',
-        fecha_fin: '2020-12-01',
+        fecha_inicio: this.fechaInicio,
+        fecha_fin: this.fechaFin
+        ,
         item: {
           numero: this.posicionestacionamiento,
           tipo: 'estacionamiento',

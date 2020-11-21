@@ -20,18 +20,23 @@ export class ReservaComponent implements OnInit {
   mostrarCov19: boolean = true;
   fechaInicio: string;
   fechaFin: string;
+  submit:boolean;
   constructor(private router: Router) {
     this.fechaInicio=''
     this.fechaFin=''
 
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.submit=false
+  }
   irCroquis(formulario:NgForm) {
+    this.submit=true;
     if (this.fechaInicio == '' || this.fechaFin =='') {
       return;
     }
     else{
-    this.router.navigate(['/croquis', this.fechaInicio, this.fechaFin])
+    //this.router.navigate(['/croquis', this.fechaInicio, this.fechaFin])
     }
   }
+
 }
