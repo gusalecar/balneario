@@ -19,6 +19,7 @@ pylint-django = "*"
 django-cors-headers = "~=3.5"
 djangorestframework = "~=3.11"
 drf-social-oauth2 = "~=1.0"
+mercadopago = "*"
 
 [requires]
 python_version = "3.8"

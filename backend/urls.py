@@ -11,5 +11,6 @@ router.register(r'precios', views.PrecioViewSet, 'precios')
 urlpatterns = [
     path('', views.TestRequest.as_view()),
     path('auth/', include('backend.users.urls')),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('pagos', views.PagoRequest.as_view())
 ]
