@@ -13,7 +13,34 @@ export class AuthService {
   private url = 'http://localhost:8000/';
   userToken: string;
   usuario: string;
+  private clientId = 'Ygb0LX99akAbijtkumNG3VSV9yT9PYPcbpRtmLF0';
+  private clientSecret = 'wucDfCvI7LubiVb1V7vmgCCMd3xUtZV0oJGoMih6NT5E4DeHZDT66PuD06SNDsX7mO3umMcCF3S27qRPm6k4Nm3WbtLpa75ujb2Q4mkwvS5RBYcUKCFMoYiw5FYtTcm9';
+
   constructor(private http: HttpClient) {}
+
+  convertToken(token: string, backend: string) {
+    return this.http.post(
+      `${this.url}api/auth/convert-token/`,
+      {
+        grant_type: 'convert_token',
+        client_id: this.clientId,
+        client_secret: this.clientSecret,
+        backend: backend,
+        token: token,
+      }).pipe(map(
+        resp => {
+          this.guardarToken(resp['access_token']);
+        })
+    );
+  }
+
+  convertFBToken(token: string) {
+    return this.convertToken(token, 'facebook');
+  }
+
+  convertGoogleToken(token: string) {
+    return this.convertToken(token, 'google-oauth2');
+  }
 
   nuevoUsuario(usuario: UsuarioModel) {
     const authData = {
@@ -27,10 +54,18 @@ export class AuthService {
     const authData2 = {
       username: usuario.usuario,
       password: usuario.password,
+      grant_type: 'password'
     };
-    return this.http.post(`${this.url}api/auth/token`, authData2).pipe(
+    return this.http.post(`${this.url}api/auth/token`, authData2, {
+      headers: {
+          'Content-Type':  'application/json',
+          'Authorization': 'Basic ' + btoa(
+            `${this.clientId}:${this.clientSecret}`)
+        }
+      }).pipe(
       map((resp) => {
-        this.guardarToken(resp['access']);
+        console.log(resp);
+        this.guardarToken(resp['access_token']);
         this.guardarUsuario(usuario.usuario);
         return resp;
       })

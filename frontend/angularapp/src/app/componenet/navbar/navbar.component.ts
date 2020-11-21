@@ -6,6 +6,7 @@ import { UsuarioModel } from '../../models/usuario.model';
 
 import { AuthService } from '../../services/auth.service';
 import Swal from 'sweetalert2';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,10 @@ export class NavbarComponent implements OnInit {
   user: string;
   passDiferente: boolean;
 
-  constructor(private auth: AuthService) {
+  constructor(
+    private auth: AuthService,
+    private socialAuth: SocialAuthService
+  ) {
     if (localStorage.getItem('token')) {
       this.logueado = true;
     } else {
@@ -34,6 +38,38 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.usuario = new UsuarioModel();
     this.usuariologin = new UsuarioModel();
+  }
+
+  signInWithFB(): void {
+    this.socialAuth
+      .signIn(FacebookLoginProvider.PROVIDER_ID, {
+        scope: 'email',
+      })
+      .then((socialUser) => {
+        this.auth.convertFBToken(socialUser.authToken).subscribe(
+          (res) => {
+            this.logueado = true;
+          }
+        )
+      });
+  }
+
+  signInWithGoogle(): void {
+    this.socialAuth
+      .signIn(GoogleLoginProvider.PROVIDER_ID, {
+        scope: 'profile email',
+      })
+      .then((socialUser) => {
+        this.auth.convertGoogleToken(socialUser.authToken).subscribe(
+          (res) => {
+            this.logueado = true;
+          }
+        )
+      });
+  }
+
+  signOut(): void {
+    this.socialAuth.signOut();
   }
 
   onSubmit(formulario: NgForm) {

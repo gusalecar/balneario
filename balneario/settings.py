@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'backend.apps.BackendConfig',
     'corsheaders',
+    'oauth2_provider',
+    'social_django',
+    'drf_social_oauth2',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -129,13 +133,49 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'drf_social_oauth2.authentication.SocialAuthentication',
     )
 }
 
+AUTHENTICATION_BACKENDS = (
+    # Google OAuth2
+    'social_core.backends.google.GoogleOAuth2',
+
+    # Facebook OAuth2
+    'social_core.backends.facebook.FacebookAppOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    # drf_social_oauth2
+    'drf_social_oauth2.backends.DjangoOAuth2',
+
+    # Django
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# Facebook configuration
+SOCIAL_AUTH_FACEBOOK_KEY = '684437409159465'
+# SOCIAL_AUTH_FACEBOOK_SECRET en local_settings.py
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
+
+SOCIAL_AUTH_FACEBOOK_API_VERSION = '9.0'
+
+# Google configuration
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '98916137208-3247mhgio62ikv9tb1o85hha08db3t4q.apps.googleusercontent.com' # pylint: disable=line-too-long
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET en local_settings.py
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
+]
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-    "http://127.0.0.1:4200",
+    'http://localhost:4200',
+    'https://localhost:4200',
 ]
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
@@ -143,7 +183,3 @@ EMAIL_FILE_PATH = BASE_DIR / 'mails-reservas/'
 
 MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = '/media/'
-
-SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
-}
