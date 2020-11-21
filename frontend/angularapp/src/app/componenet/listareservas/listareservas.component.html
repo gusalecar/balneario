@@ -8,7 +8,7 @@
             <ul class="list-unstyled">
               <li><strong>ID:</strong> {{ reserva.id }}</li>
               <li><strong>Estado:</strong> {{ reserva.estado }}</li>
-              <li><strong>Importe:</strong> ${{ precioTotal(reserva.detalles) }}</li>
+              <li><strong>Importe:</strong> ${{ precioTotal(reserva.detalles)*cantidadDias(reserva.detalles[0]) }}</li>
               <li><strong>Fecha:</strong> {{ reserva.fecha | date }}</li>
             </ul>
           </div>
@@ -40,7 +40,7 @@
             </div>
 
             <a *ngIf="reserva.estado=='impago'" class="btn btn-cel mb-auto" role="button"
-              [routerLink]="['/pago']" [queryParams]="{id: reserva.id}">Pagar</a> <!-- A nuevo componente de pago -->
+              [routerLink]="['/pago']" [queryParams]="{id: precioTotal(reserva.detalles)*cantidadDias(reserva.detalles[0])}">Pagar</a> <!-- A nuevo componente de pago -->
           </div>
         </div>
       </div>
