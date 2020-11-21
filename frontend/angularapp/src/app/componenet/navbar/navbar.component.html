@@ -12,13 +12,15 @@
       <div *ngIf="!logueado" class="navbar-nav ml-auto">
         <div class="nav-item dropdown">
           <a href="#" data-toggle="dropdown" class="nav-link text-center">Iniciar sesión</a>
-          <div class="dropdown-menu dropdown-menu-right p-0 bg-dark text-light">
-            <div class="px-3 pt-3">
-              <button class="btn btn-primary btn-sm" (click)="signInWithFB()">FB</button>
+          <div class="dropdown-menu dropdown-menu-right p-3 bg-dark text-light">
+            <p class="text-center mb-2">Ingrese con sus redes sociales</p>
+            <div class="d-flex justify-content-around pb-2">
+              <button class="btn btn-primary btn-sm" (click)="signInWithFB()">Facebook</button>
               <button class="btn btn-danger btn-sm" (click)="signInWithGoogle()">Google</button>
             </div>
+            <p class="text-center mb-2">o</p>
             <form (ngSubmit)="onSubmitLogin(formularioLogin)" #formularioLogin="ngForm"
-              class="p-3" ngNativeValidate>
+              ngNativeValidate>
               <!--
               <p class="hint-text">
                 Inicie sesión con su cuenta de redes sociales
